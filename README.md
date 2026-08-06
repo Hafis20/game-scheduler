@@ -6,6 +6,23 @@
 
 [Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 
+## Architecture
+
+Deployable application shells live in `apps/`. Product code is organized as
+domain-first vertical slices under `libs/<product>/<domain>/`:
+
+```text
+libs/e-football/landing/
+├── feature/       # Route-level composition and user workflows
+├── data-access/   # API clients, state, repositories, and facades
+└── ui/            # Presentational components
+```
+
+Applications lazy-load feature libraries. A feature may depend on its
+`data-access` and `ui` libraries; those lower layers must not depend on the
+feature. Import libraries through their public aliases, for example
+`@game-scheduler/e-football/landing/ui`, rather than their filesystem paths.
+
 ## Run tasks
 
 To run tasks with Nx use:

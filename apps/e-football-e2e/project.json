@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/e-football-e2e/src",
+  "tags": ["scope:e-football", "type:e2e"],
   "implicitDependencies": [
     "e-football"
   ],

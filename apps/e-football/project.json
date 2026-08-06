@@ -2,9 +2,9 @@
   "name": "e-football",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "e-football",
   "sourceRoot": "apps/e-football/src",
-  "tags": [],
+  "tags": ["scope:e-football", "type:app"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",

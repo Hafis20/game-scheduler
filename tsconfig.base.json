@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": false,
-    "paths": {}
+    "paths": {
+      "@game-scheduler/e-football/landing/feature": [
+        "./libs/e-football/landing/feature/src/index.ts"
+      ],
+      "@game-scheduler/e-football/landing/ui": [
+        "./libs/e-football/landing/ui/src/index.ts"
+      ],
+      "@game-scheduler/e-football/landing/data-access": [
+        "./libs/e-football/landing/data-access/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

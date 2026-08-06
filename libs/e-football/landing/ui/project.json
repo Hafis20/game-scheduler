@@ -1,0 +1,13 @@
+{
+  "name": "e-football-landing-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/e-football/landing/ui/src",
+  "prefix": "e-football",
+  "projectType": "library",
+  "tags": ["scope:e-football", "domain:landing", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
