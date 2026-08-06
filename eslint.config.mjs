@@ -18,14 +18,18 @@ export default [
           depConstraints: [
             {
               sourceTag: 'scope:e-football',
-              onlyDependOnLibsWithTags: [
-                'scope:e-football',
-                'scope:shared',
-              ],
+              onlyDependOnLibsWithTags: ['scope:e-football', 'scope:shared'],
             },
             {
               sourceTag: 'domain:landing',
               onlyDependOnLibsWithTags: ['domain:landing', 'domain:shared'],
+            },
+            {
+              sourceTag: 'domain:match-center',
+              onlyDependOnLibsWithTags: [
+                'domain:match-center',
+                'domain:shared',
+              ],
             },
             {
               sourceTag: 'type:app',

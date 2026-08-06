@@ -1,0 +1,12 @@
+{
+  "name": "e-football-match-center-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/e-football/match-center/data-access/src",
+  "projectType": "library",
+  "tags": ["scope:e-football", "domain:match-center", "type:data-access"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

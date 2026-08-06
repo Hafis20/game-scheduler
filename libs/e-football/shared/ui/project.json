@@ -1,0 +1,20 @@
+{
+  "name": "e-football-shared-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/e-football/shared/ui/src",
+  "prefix": "e-football",
+  "projectType": "library",
+  "tags": ["scope:e-football", "domain:shared", "type:ui"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "coverage/libs/e-football/shared/ui"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

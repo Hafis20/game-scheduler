@@ -1,0 +1,13 @@
+{
+  "name": "e-football-match-center-feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/e-football/match-center/feature/src",
+  "prefix": "e-football",
+  "projectType": "library",
+  "tags": ["scope:e-football", "domain:match-center", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

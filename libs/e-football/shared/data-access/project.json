@@ -1,0 +1,12 @@
+{
+  "name": "e-football-shared-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/e-football/shared/data-access/src",
+  "projectType": "library",
+  "tags": ["scope:e-football", "domain:shared", "type:data-access"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

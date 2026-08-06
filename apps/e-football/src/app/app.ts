@@ -5,5 +5,6 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   selector: 'e-football-root',
   template: '<router-outlet />',
+  host: { class: 'block min-h-screen' },
 })
 export class App {}

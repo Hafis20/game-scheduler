@@ -1,0 +1,97 @@
+<div class="min-h-screen bg-[#f7faf6] pt-16 text-gray-950">
+  <e-football-navbar brand="E-FOOTBALL" />
+
+  <main>
+    <section class="relative overflow-hidden border-b border-gray-200 bg-white">
+      <span
+        class="pointer-events-none absolute inset-0 bg-[linear-gradient(#11182709_1px,transparent_1px),linear-gradient(90deg,#11182709_1px,transparent_1px)] bg-[size:32px_32px]"
+        aria-hidden="true"
+      ></span>
+      <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <a
+          routerLink="/"
+          class="text-xs font-bold uppercase text-gray-500 transition hover:text-gray-950"
+        >
+          Back to tournament
+        </a>
+
+        <div class="mt-7 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded border border-gray-300 bg-white px-3 py-2 text-xs font-bold uppercase text-gray-600">
+              <span class="size-2 rounded-full bg-[#56b947]" aria-hidden="true"></span>
+              League control / Season 01
+            </div>
+            <h1 class="mt-5 text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
+              Match center
+            </h1>
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
+              Fixtures, results, and the live league table for every published tournament round.
+            </p>
+            <p class="mt-4 text-xs font-black uppercase text-[#2f7d32]">
+              CNM Pantry International Multi Match Stadium
+            </p>
+          </div>
+
+          <dl class="grid grid-cols-3 border-y border-gray-300 py-4 lg:min-w-[430px]">
+            <div class="border-r border-gray-300 px-4">
+              <dt class="text-[10px] font-bold uppercase text-gray-500">Rounds</dt>
+              <dd class="mt-2 text-xl font-black">3 <span class="text-xs text-gray-400">/ 7</span></dd>
+            </div>
+            <div class="border-r border-gray-300 px-4">
+              <dt class="text-[10px] font-bold uppercase text-gray-500">Fixtures</dt>
+              <dd class="mt-2 text-xl font-black">12</dd>
+            </div>
+            <div class="px-4">
+              <dt class="text-[10px] font-bold uppercase text-gray-500">Complete</dt>
+              <dd class="mt-2 text-xl font-black">{{ matchCenter.completedFixtureCount() }}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 sm:py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid w-full grid-cols-3 rounded-lg border border-gray-200 bg-white p-1 sm:max-w-md"
+          role="tablist"
+          aria-label="Fixture rounds"
+        >
+          @for (round of matchCenter.rounds(); track round.number) {
+            <button
+              type="button"
+              role="tab"
+              [class]="
+                selectedRoundNumber() === round.number
+                  ? 'min-h-10 rounded bg-[#7cff4f] text-xs font-extrabold uppercase text-gray-950 transition-colors'
+                  : 'min-h-10 rounded text-xs font-extrabold uppercase text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-950'
+              "
+              [attr.aria-selected]="selectedRoundNumber() === round.number"
+              [attr.aria-controls]="'round-panel-' + round.number"
+              (click)="selectRound(round.number)"
+            >
+              Round {{ round.number }}
+            </button>
+          }
+        </div>
+
+        <div class="mt-8" [id]="'round-panel-' + selectedRoundNumber()" role="tabpanel">
+          @if (selectedRound(); as round) {
+            <e-football-fixture-list [round]="round" />
+          }
+        </div>
+
+        <div class="my-12 border-t border-gray-300 sm:my-16"></div>
+
+        <e-football-standings-table [standings]="matchCenter.standings()" />
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p class="font-bold text-gray-800">E-FOOTBALL / MATCH CENTER</p>
+      <p>CNM Pantry International Multi Match Stadium</p>
+    </div>
+  </footer>
+</div>

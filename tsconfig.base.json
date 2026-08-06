@@ -23,6 +23,24 @@
       ],
       "@game-scheduler/e-football/landing/data-access": [
         "./libs/e-football/landing/data-access/src/index.ts"
+      ],
+      "@game-scheduler/e-football/match-center/feature": [
+        "./libs/e-football/match-center/feature/src/index.ts"
+      ],
+      "@game-scheduler/e-football/match-center/ui": [
+        "./libs/e-football/match-center/ui/src/index.ts"
+      ],
+      "@game-scheduler/e-football/match-center/data-access": [
+        "./libs/e-football/match-center/data-access/src/index.ts"
+      ],
+      "@game-scheduler/e-football/shared/ui": [
+        "./libs/e-football/shared/ui/src/index.ts"
+      ],
+      "@game-scheduler/e-football/shared/data-access": [
+        "./libs/e-football/shared/data-access/src/index.ts"
+      ],
+      "@game-scheduler/data-access": [
+        "./libs/e-football/shared/data-access/src/index.ts"
       ]
     }
   },
