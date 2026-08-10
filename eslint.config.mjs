@@ -37,6 +37,7 @@ export default [
                 'type:feature',
                 'type:data-access',
                 'type:shared',
+                'type:ui'
               ],
             },
             {

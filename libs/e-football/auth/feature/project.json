@@ -1,0 +1,20 @@
+{
+  "name": "login",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/e-football/auth/feature/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:e-football","domain:auth","type:feature"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "coverage/libs/e-football/auth/feature"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

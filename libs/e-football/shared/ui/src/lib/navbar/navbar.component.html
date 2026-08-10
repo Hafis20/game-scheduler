@@ -58,13 +58,33 @@
       >
         Matches
       </a>
-      <a
-        class="inline-flex min-h-10 items-center justify-center rounded bg-[#7cff4f] px-4 text-sm font-bold text-gray-950 transition hover:bg-[#69e93c]"
-        routerLink="/"
-        fragment="join"
-      >
-        Join lobby
-      </a>
+      @if (user(); as currentUser) {
+        @if (avatarUrl(currentUser); as avatar) {
+          <button type="button" (click)="signOutClicked.emit()">
+            <img
+              class="size-10 rounded-full border border-gray-200 object-cover"
+              [src]="avatar"
+              [alt]="currentUser.email || 'User avatar'"
+            />
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="inline-flex size-10 items-center justify-center rounded-full bg-gray-950 text-sm font-bold text-white"
+            (click)="signOutClicked.emit()"
+          >
+            {{ currentUser.email?.charAt(0)?.toUpperCase() || 'U' }}
+          </button>
+        }
+      } @else {
+        <button
+          type="button"
+          class="inline-flex min-h-10 items-center justify-center rounded bg-[#7cff4f] px-4 text-sm font-bold text-gray-950 transition hover:bg-[#69e93c]"
+          (click)="loginClicked.emit()"
+        >
+          Join lobby
+        </button>
+      }
     </div>
   </div>
 </header>

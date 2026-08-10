@@ -14,8 +14,4 @@ export class SupabaseService {
   getClient(): SupabaseClient {
     return this.client;
   }
-
-  async signInWithGoogle() {
-    await this.client.auth.signInWithOAuth({ provider: 'google' });
-  }
 }

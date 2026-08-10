@@ -39,11 +39,20 @@
       "@game-scheduler/e-football/shared/data-access": [
         "./libs/e-football/shared/data-access/src/index.ts"
       ],
-      "@game-scheduler/data-access": [
+      "@game-scheduler/shared/data-access": [
         "./libs/e-football/shared/data-access/src/index.ts"
       ],
-      "@game-scheduler/e-football/supabase": ["./libs/e-football/supabase/src/index.ts"],
-      "@game-scheduler/e-football/environment":["./apps/e-football/src/environment/environment.ts"]
+      "@game-scheduler/e-football/supabase": [
+        "./libs/e-football/supabase/src/index.ts"
+      ],
+      "@game-scheduler/e-football/environment": [
+        "./apps/e-football/src/environment/environment.ts"
+      ],
+      "@game-scheduler/auth/data-access": [
+        "./libs/e-football/auth/data-access/src/index.ts"
+      ],
+      "@game-scheduler/auth/feature": ["./libs/e-football/auth/feature/src/index.ts"],
+      "@game-scheduler/auth/ui": ["./libs/e-football/auth/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
