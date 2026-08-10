@@ -4,7 +4,7 @@
   "sourceRoot": "libs/game-scheduler/dashboard/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["domain:dashboard", "scope:game-scheduler", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

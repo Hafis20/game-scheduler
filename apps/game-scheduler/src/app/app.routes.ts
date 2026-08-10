@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { authGuard } from '@game-scheduler/auth/data-access';
 
 export const appRoutes: Route[] = [
   {
@@ -14,6 +15,14 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('@game-scheduler/auth/feature').then(
         (module) => module.LoginComponent,
+      ),
+  },
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('@game-scheduler/dashboard').then(
+        (module) => module.DashboardComponent,
       ),
   },
   {

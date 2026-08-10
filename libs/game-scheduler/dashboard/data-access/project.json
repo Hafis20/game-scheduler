@@ -4,7 +4,7 @@
   "sourceRoot": "libs/game-scheduler/dashboard/data-access/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:game-scheduler", "type:data-access"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
