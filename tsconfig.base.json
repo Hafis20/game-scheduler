@@ -42,7 +42,8 @@
       "@game-scheduler/data-access": [
         "./libs/e-football/shared/data-access/src/index.ts"
       ],
-      "@game-scheduler/supabase": ["./libs/e-football/supabase/src/index.ts"]
+      "@game-scheduler/e-football/supabase": ["./libs/e-football/supabase/src/index.ts"],
+      "@game-scheduler/e-football/environment":["./apps/e-football/src/environment/environment.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

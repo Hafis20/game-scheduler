@@ -33,7 +33,11 @@ export default [
             },
             {
               sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: ['type:feature'],
+              onlyDependOnLibsWithTags: [
+                'type:feature',
+                'type:data-access',
+                'type:shared',
+              ],
             },
             {
               sourceTag: 'type:feature',
