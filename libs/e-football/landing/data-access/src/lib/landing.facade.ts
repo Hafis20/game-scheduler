@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 import {
   TOURNAMENT_TEAMS,
   TournamentTeam,
@@ -15,7 +15,7 @@ export interface KnockoutMatch {
   readonly slots: readonly KnockoutSlot[];
 }
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class LandingFacade {
   readonly heroTitle = signal('PLAY. SCHEDULE. CONQUER.');
   readonly venueName = signal('CNM Pantry International Multi Match Stadium');
