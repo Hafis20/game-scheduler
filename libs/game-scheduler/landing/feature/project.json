@@ -1,0 +1,20 @@
+{
+  "name": "game-scheduler-landing-feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game-scheduler/landing/feature/src",
+  "prefix": "game-scheduler",
+  "projectType": "library",
+  "tags": ["scope:game-scheduler", "domain:landing", "type:feature"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "coverage/libs/game-scheduler/landing/feature"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

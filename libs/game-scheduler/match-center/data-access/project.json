@@ -1,0 +1,12 @@
+{
+  "name": "game-scheduler-match-center-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game-scheduler/match-center/data-access/src",
+  "projectType": "library",
+  "tags": ["scope:game-scheduler", "domain:match-center", "type:data-access"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "game-scheduler-landing-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game-scheduler/landing/ui/src",
+  "prefix": "game-scheduler",
+  "projectType": "library",
+  "tags": ["scope:game-scheduler", "domain:landing", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

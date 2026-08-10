@@ -17,8 +17,11 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
-              sourceTag: 'scope:e-football',
-              onlyDependOnLibsWithTags: ['scope:e-football', 'scope:shared'],
+              sourceTag: 'scope:game-scheduler',
+              onlyDependOnLibsWithTags: [
+                'scope:game-scheduler',
+                'scope:shared',
+              ],
             },
             {
               sourceTag: 'domain:landing',
@@ -37,7 +40,8 @@ export default [
                 'type:feature',
                 'type:data-access',
                 'type:shared',
-                'type:ui'
+                'type:ui',
+                'type:util',
               ],
             },
             {

@@ -1,0 +1,94 @@
+{
+  "name": "game-scheduler",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "game-scheduler",
+  "sourceRoot": "apps/game-scheduler/src",
+  "tags": [
+    "scope:game-scheduler",
+    "type:app"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/game-scheduler",
+        "browser": "apps/game-scheduler/src/main.ts",
+        "tsConfig": "apps/game-scheduler/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/game-scheduler/public"
+          }
+        ],
+        "styles": [
+          "apps/game-scheduler/src/styles.css"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/game-scheduler/src/environments/environment.ts",
+              "with": "apps/game-scheduler/src/environments/environment.development.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "configurations": {
+        "production": {
+          "buildTarget": "game-scheduler:build:production"
+        },
+        "development": {
+          "buildTarget": "game-scheduler:build:development"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@angular/build:unit-test",
+      "options": {
+        "watch": false
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "game-scheduler:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/game-scheduler/browser",
+        "spa": true
+      }
+    }
+  }
+}

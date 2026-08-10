@@ -1,9 +1,0 @@
-{
-  "name": "e-football-landing-data-access",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/e-football/landing/data-access/src",
-  "projectType": "library",
-  "tags": ["scope:e-football", "domain:landing", "type:data-access"],
-  "// targets": "to see all targets run: nx show project e-football-landing-data-access --web",
-  "targets": {}
-}

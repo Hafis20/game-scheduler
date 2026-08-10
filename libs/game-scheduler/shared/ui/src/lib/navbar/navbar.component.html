@@ -1,0 +1,90 @@
+<header
+  class="fixed inset-x-0 top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-md transition-shadow duration-200"
+  [class.shadow-sm]="isScrolled()"
+>
+  <div
+    class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8"
+  >
+    <a
+      class="flex min-w-0 items-center gap-3 text-gray-950"
+      routerLink="/"
+      fragment="top"
+    >
+      <span class="truncate text-sm font-black uppercase sm:text-base">{{
+        brand()
+      }}</span>
+    </a>
+
+    <nav
+      aria-label="Primary navigation"
+      class="hidden items-center gap-6 lg:flex"
+    >
+      <a
+        class="text-sm font-semibold text-gray-600 transition hover:text-black"
+        routerLink="/"
+        fragment="arena"
+        >Rooms</a
+      >
+      <a
+        class="text-sm font-semibold text-gray-600 transition hover:text-black"
+        routerLink="/"
+        fragment="teams"
+        >Games</a
+      >
+      <a
+        class="text-sm font-semibold text-gray-600 transition hover:text-black"
+        routerLink="/"
+        fragment="format"
+        >Flow</a
+      >
+      <a
+        class="text-sm font-semibold text-gray-600 transition hover:text-black"
+        routerLink="/"
+        fragment="knockout"
+        >Queue</a
+      >
+      <a
+        class="text-sm font-semibold text-gray-600 transition hover:text-black"
+        routerLink="/"
+        fragment="rules"
+        >Rules</a
+      >
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+      <a
+        class="inline-flex px-2 py-2 text-sm font-semibold text-gray-600 transition hover:text-black sm:px-3"
+        routerLink="/matches"
+      >
+        Schedule
+      </a>
+      @if (user(); as currentUser) {
+        @if (avatarUrl(currentUser); as avatar) {
+          <button type="button" (click)="signOutClicked.emit()">
+            <img
+              class="size-10 rounded-full border border-gray-200 object-cover"
+              [src]="avatar"
+              [alt]="currentUser.email || 'User avatar'"
+            />
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="inline-flex size-10 items-center justify-center rounded-full bg-gray-950 text-sm font-bold text-white"
+            (click)="signOutClicked.emit()"
+          >
+            {{ currentUser.email?.charAt(0)?.toUpperCase() || 'U' }}
+          </button>
+        }
+      } @else {
+        <button
+          type="button"
+          class="inline-flex min-h-10 items-center justify-center rounded bg-[#7cff4f] px-4 text-sm font-bold text-gray-950 transition hover:bg-[#69e93c]"
+          (click)="loginClicked.emit()"
+        >
+          Join room
+        </button>
+      }
+    </div>
+  </div>
+</header>

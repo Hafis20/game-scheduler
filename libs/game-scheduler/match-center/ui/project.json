@@ -1,0 +1,13 @@
+{
+  "name": "game-scheduler-match-center-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game-scheduler/match-center/ui/src",
+  "prefix": "game-scheduler",
+  "projectType": "library",
+  "tags": ["scope:game-scheduler", "domain:match-center", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
