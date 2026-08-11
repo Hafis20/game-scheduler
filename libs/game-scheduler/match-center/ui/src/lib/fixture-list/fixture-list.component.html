@@ -31,23 +31,39 @@
         <article
           class="grid min-h-[7.5rem] grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] items-center gap-x-4 gap-y-3.5 p-4 md:min-h-20 md:grid-cols-[5rem_minmax(0,1fr)_5rem_minmax(0,1fr)_6.5rem] md:gap-y-0 md:px-5 md:py-3.5"
         >
-          <p class="col-start-1 row-start-1 text-[10px] font-extrabold uppercase text-gray-400 md:col-auto md:row-auto">
+          <p
+            class="col-start-1 row-start-1 text-[10px] font-extrabold uppercase text-gray-400 md:col-auto md:row-auto"
+          >
             Room {{ match.id.toString().padStart(2, '0') }}
           </p>
 
-          <div class="col-start-1 row-start-2 flex min-w-0 flex-row-reverse items-center gap-3 text-right md:col-auto md:row-auto md:flex-row md:text-left">
-            <span class="shrink-0 text-2xl leading-none" role="img" [attr.aria-label]="match.homeTeam.country + ' icon'">
+          <div
+            class="col-start-1 row-start-2 flex min-w-0 flex-row-reverse items-center gap-3 text-right md:col-auto md:row-auto md:flex-row md:text-left"
+          >
+            <span
+              class="shrink-0 text-2xl leading-none"
+              role="img"
+              [attr.aria-label]="match.homeTeam.country + ' icon'"
+            >
               {{ match.homeTeam.flag }}
             </span>
             <div class="min-w-0">
-              <p class="truncate text-sm font-black uppercase text-gray-950">{{ match.homeTeam.owner }}</p>
-              <p class="mt-0.5 truncate text-[10px] font-bold uppercase text-gray-500">{{ match.homeTeam.country }}</p>
+              <p class="truncate text-sm font-black uppercase text-gray-950">
+                {{ match.homeTeam.owner }}
+              </p>
+              <p
+                class="mt-0.5 truncate text-[10px] font-bold uppercase text-gray-500"
+              >
+                {{ match.homeTeam.country }}
+              </p>
             </div>
           </div>
 
           <div
             class="col-start-2 row-start-2 flex min-h-9 items-center justify-center gap-1.5 rounded border border-gray-300 text-xs font-black text-gray-900 md:col-auto md:row-auto"
-            [attr.aria-label]="match.status === 'Pending' ? 'Pending result' : 'Final result'"
+            [attr.aria-label]="
+              match.status === 'Pending' ? 'Pending result' : 'Final result'
+            "
           >
             @if (match.homeScore !== null && match.awayScore !== null) {
               <span>{{ match.homeScore }}</span>
@@ -58,18 +74,35 @@
             }
           </div>
 
-          <div class="col-start-3 row-start-2 flex min-w-0 items-center gap-3 md:col-auto md:row-auto">
-            <span class="shrink-0 text-2xl leading-none" role="img" [attr.aria-label]="match.awayTeam.country + ' icon'">
+          <div
+            class="col-start-3 row-start-2 flex min-w-0 items-center gap-3 md:col-auto md:row-auto"
+          >
+            <span
+              class="shrink-0 text-2xl leading-none"
+              role="img"
+              [attr.aria-label]="match.awayTeam.country + ' icon'"
+            >
               {{ match.awayTeam.flag }}
             </span>
             <div class="min-w-0">
-              <p class="truncate text-sm font-black uppercase text-gray-950">{{ match.awayTeam.owner }}</p>
-              <p class="mt-0.5 truncate text-[10px] font-bold uppercase text-gray-500">{{ match.awayTeam.country }}</p>
+              <p class="truncate text-sm font-black uppercase text-gray-950">
+                {{ match.awayTeam.owner }}
+              </p>
+              <p
+                class="mt-0.5 truncate text-[10px] font-bold uppercase text-gray-500"
+              >
+                {{ match.awayTeam.country }}
+              </p>
             </div>
           </div>
 
-          <p class="col-start-3 row-start-1 inline-flex items-center justify-end gap-2 text-[10px] font-extrabold uppercase text-gray-600 md:col-auto md:row-auto">
-            <span class="size-1.5 rounded-full bg-[#56b947]" aria-hidden="true"></span>
+          <p
+            class="col-start-3 row-start-1 inline-flex items-center justify-end gap-2 text-[10px] font-extrabold uppercase text-gray-600 md:col-auto md:row-auto"
+          >
+            <span
+              class="size-1.5 rounded-full bg-[#56b947]"
+              aria-hidden="true"
+            ></span>
             {{ match.status }}
           </p>
         </article>

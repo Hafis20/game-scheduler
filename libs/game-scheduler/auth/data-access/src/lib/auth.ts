@@ -9,7 +9,7 @@ import { SupabaseService } from '@game-scheduler/supabase';
 
 export type AuthStateChangeCallback = (
   event: AuthChangeEvent,
-  session: Session | null,
+  session: Session | null
 ) => void;
 
 @Service()

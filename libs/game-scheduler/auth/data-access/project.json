@@ -4,7 +4,7 @@
   "sourceRoot": "libs/game-scheduler/auth/data-access/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:game-scheduler","domain:auth", "type:data-access"],
+  "tags": ["scope:game-scheduler", "domain:auth", "type:data-access"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

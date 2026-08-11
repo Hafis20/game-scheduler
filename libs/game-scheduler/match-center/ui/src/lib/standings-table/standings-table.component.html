@@ -1,12 +1,21 @@
 <section aria-labelledby="standings-title">
-  <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+  <div
+    class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+  >
     <div>
-      <p class="text-xs font-bold uppercase text-[#2f7d32]">Live room rankings</p>
-      <h2 id="standings-title" class="mt-2 text-2xl font-black uppercase text-gray-950 sm:text-3xl">
+      <p class="text-xs font-bold uppercase text-[#2f7d32]">
+        Live room rankings
+      </p>
+      <h2
+        id="standings-title"
+        class="mt-2 text-2xl font-black uppercase text-gray-950 sm:text-3xl"
+      >
         Scheduler table
       </h2>
     </div>
-    <p class="flex items-center gap-2 text-xs font-bold uppercase text-gray-500">
+    <p
+      class="flex items-center gap-2 text-xs font-bold uppercase text-gray-500"
+    >
       <span class="size-2 rounded-full bg-[#8fca76]" aria-hidden="true"></span>
       Top rooms stay pinned
     </p>
@@ -44,7 +53,12 @@
             </td>
             <th scope="row">
               <span class="flex items-center gap-2">
-                <span class="text-lg" role="img" [attr.aria-label]="row.team.country + ' icon'">{{ row.team.flag }}</span>
+                <span
+                  class="text-lg"
+                  role="img"
+                  [attr.aria-label]="row.team.country + ' icon'"
+                  >{{ row.team.flag }}</span
+                >
                 <span>{{ row.team.owner }}</span>
               </span>
             </th>

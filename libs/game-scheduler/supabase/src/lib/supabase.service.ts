@@ -8,7 +8,7 @@ export class SupabaseService {
 
   private readonly client: SupabaseClient = createClient(
     this.config.url,
-    this.config.publishableKey,
+    this.config.publishableKey
   );
 
   getClient(): SupabaseClient {

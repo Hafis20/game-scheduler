@@ -4,16 +4,11 @@
   "projectType": "application",
   "prefix": "game-scheduler",
   "sourceRoot": "apps/game-scheduler/src",
-  "tags": [
-    "scope:game-scheduler",
-    "type:app"
-  ],
+  "tags": ["scope:game-scheduler", "type:app"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/game-scheduler",
@@ -25,9 +20,7 @@
             "input": "apps/game-scheduler/public"
           }
         ],
-        "styles": [
-          "apps/game-scheduler/src/styles.css"
-        ]
+        "styles": ["apps/game-scheduler/src/styles.css"]
       },
       "configurations": {
         "production": {

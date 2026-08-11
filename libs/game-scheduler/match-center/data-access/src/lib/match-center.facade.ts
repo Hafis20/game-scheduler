@@ -53,14 +53,70 @@ const INITIAL_FIXTURES: readonly MatchFixture[] = [
   { id: 2, round: 1, homeTeamId: 2, awayTeamId: 7, homeScore: 0, awayScore: 1 },
   { id: 3, round: 1, homeTeamId: 3, awayTeamId: 6, homeScore: 8, awayScore: 0 },
   { id: 4, round: 1, homeTeamId: 4, awayTeamId: 5, homeScore: 4, awayScore: 1 },
-  { id: 5, round: 2, homeTeamId: 1, awayTeamId: 7, homeScore: null, awayScore: null },
-  { id: 6, round: 2, homeTeamId: 8, awayTeamId: 6, homeScore: null, awayScore: null },
-  { id: 7, round: 2, homeTeamId: 2, awayTeamId: 5, homeScore: null, awayScore: null },
-  { id: 8, round: 2, homeTeamId: 3, awayTeamId: 4, homeScore: null, awayScore: null },
-  { id: 9, round: 3, homeTeamId: 1, awayTeamId: 6, homeScore: null, awayScore: null },
-  { id: 10, round: 3, homeTeamId: 7, awayTeamId: 5, homeScore: null, awayScore: null },
-  { id: 11, round: 3, homeTeamId: 8, awayTeamId: 4, homeScore: null, awayScore: null },
-  { id: 12, round: 3, homeTeamId: 2, awayTeamId: 3, homeScore: null, awayScore: null },
+  {
+    id: 5,
+    round: 2,
+    homeTeamId: 1,
+    awayTeamId: 7,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 6,
+    round: 2,
+    homeTeamId: 8,
+    awayTeamId: 6,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 7,
+    round: 2,
+    homeTeamId: 2,
+    awayTeamId: 5,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 8,
+    round: 2,
+    homeTeamId: 3,
+    awayTeamId: 4,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 9,
+    round: 3,
+    homeTeamId: 1,
+    awayTeamId: 6,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 10,
+    round: 3,
+    homeTeamId: 7,
+    awayTeamId: 5,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 11,
+    round: 3,
+    homeTeamId: 8,
+    awayTeamId: 4,
+    homeScore: null,
+    awayScore: null,
+  },
+  {
+    id: 12,
+    round: 3,
+    homeTeamId: 2,
+    awayTeamId: 3,
+    homeScore: null,
+    awayScore: null,
+  },
 ];
 
 @Injectable({ providedIn: 'root' })
@@ -69,8 +125,7 @@ export class MatchCenterFacade {
   readonly completedFixtureCount = computed(
     () =>
       this.fixtures().filter(
-        (fixture) =>
-          fixture.homeScore !== null && fixture.awayScore !== null
+        (fixture) => fixture.homeScore !== null && fixture.awayScore !== null
       ).length
   );
 

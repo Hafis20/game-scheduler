@@ -4,7 +4,7 @@
   "sourceRoot": "libs/game-scheduler/auth/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:game-scheduler","domain:auth","type:feature"],
+  "tags": ["scope:game-scheduler", "domain:auth", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

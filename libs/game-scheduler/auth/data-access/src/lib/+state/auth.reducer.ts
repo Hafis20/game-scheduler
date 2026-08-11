@@ -10,7 +10,7 @@ export interface AuthState {
 
 const initialState: AuthState = {
   user: null,
-  loading: false,
+  loading: true,
   error: null,
 };
 
@@ -39,6 +39,6 @@ export const authFeature = createFeature({
     on(AuthActions.signOutSuccess, (state) => ({
       ...state,
       user: null,
-    })),
+    }))
   ),
 });

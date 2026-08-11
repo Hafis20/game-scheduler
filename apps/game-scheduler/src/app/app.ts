@@ -1,6 +1,10 @@
 import { Component, inject, Signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { AuthActions, selectUser } from '@game-scheduler/auth/data-access';
+import {
+  AuthActions,
+  selectLoading,
+  selectUser,
+} from '@game-scheduler/auth/data-access';
 import { NavbarComponent } from '@game-scheduler/shared/ui';
 import { Store } from '@ngrx/store';
 import { User } from '@supabase/supabase-js';
@@ -14,6 +18,7 @@ import { User } from '@supabase/supabase-js';
       [user]="user()"
       (loginClicked)="login()"
       (signOutClicked)="signOut()"
+      [authLoading]="authLoading()"
     />
 
     <router-outlet />
@@ -23,7 +28,11 @@ import { User } from '@supabase/supabase-js';
 export class App {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
-  readonly user: Signal<User | null> = this.store.selectSignal(selectUser);
+  readonly user: Signal<User | null> = this.store.selectSignal<User | null>(
+    selectUser
+  );
+  readonly authLoading: Signal<boolean> =
+    this.store.selectSignal<boolean>(selectLoading);
 
   constructor() {
     this.store.dispatch(AuthActions.loadUser());

@@ -1,1 +1,1 @@
-export * from './lib/dashboard-service/dashboard-service'
+export * from './lib/dashboard/dashboard';

@@ -7,14 +7,14 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     loadComponent: () =>
       import('@game-scheduler/landing/feature').then(
-        (module) => module.LandingComponent,
+        (module) => module.LandingComponent
       ),
   },
   {
     path: 'auth',
     loadComponent: () =>
       import('@game-scheduler/auth/feature').then(
-        (module) => module.LoginComponent,
+        (module) => module.LoginComponent
       ),
   },
   {
@@ -22,14 +22,22 @@ export const appRoutes: Route[] = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('@game-scheduler/dashboard').then(
-        (module) => module.DashboardComponent,
+        (module) => module.DashboardComponent
+      ),
+  },
+  {
+    path: 'rooms',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('@game-scheduler/rooms/feature').then(
+        (module) => module.RoomsComponent
       ),
   },
   {
     path: 'matches',
     loadComponent: () =>
       import('@game-scheduler/match-center/feature').then(
-        (module) => module.MatchCenterComponent,
+        (module) => module.MatchCenterComponent
       ),
   },
   {

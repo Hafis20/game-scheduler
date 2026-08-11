@@ -16,20 +16,20 @@ export class AuthEffects {
         from(this.authService.getUser()).pipe(
           map((user) => AuthActions.loadUserSuccess({ user })),
           catchError((error) =>
-            of(AuthActions.loadUserFailure({ error: error.message })),
-          ),
-        ),
-      ),
-    ),
+            of(AuthActions.loadUserFailure({ error: error.message }))
+          )
+        )
+      )
+    )
   );
 
   readonly signInWithGoogle$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInWithGoogle),
-        tap(() => this.authService.signInWithGoogle()),
+        tap(() => this.authService.signInWithGoogle())
       ),
-    { dispatch: false },
+    { dispatch: false }
   );
 
   readonly signOut$ = createEffect(() =>
@@ -37,9 +37,9 @@ export class AuthEffects {
       ofType(AuthActions.signOut),
       switchMap(() =>
         from(this.authService.signOut()).pipe(
-          map(() => AuthActions.signOutSuccess()),
-        ),
-      ),
-    ),
+          map(() => AuthActions.signOutSuccess())
+        )
+      )
+    )
   );
 }

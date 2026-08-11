@@ -5,7 +5,9 @@
         class="pointer-events-none absolute inset-0 bg-[linear-gradient(#11182709_1px,transparent_1px),linear-gradient(90deg,#11182709_1px,transparent_1px)] bg-[size:32px_32px]"
         aria-hidden="true"
       ></span>
-      <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div
+        class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8"
+      >
         <a
           routerLink="/"
           class="text-xs font-bold uppercase text-gray-500 transition hover:text-gray-950"
@@ -15,33 +17,55 @@
 
         <div class="mt-7 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <div class="inline-flex items-center gap-2 rounded border border-gray-300 bg-white px-3 py-2 text-xs font-bold uppercase text-gray-600">
-              <span class="size-2 rounded-full bg-[#56b947]" aria-hidden="true"></span>
+            <div
+              class="inline-flex items-center gap-2 rounded border border-gray-300 bg-white px-3 py-2 text-xs font-bold uppercase text-gray-600"
+            >
+              <span
+                class="size-2 rounded-full bg-[#56b947]"
+                aria-hidden="true"
+              ></span>
               Room control / Today
             </div>
-            <h1 class="mt-5 text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl">
+            <h1
+              class="mt-5 text-4xl font-black uppercase leading-none sm:text-5xl lg:text-6xl"
+            >
               Schedule board
             </h1>
-            <p class="mt-4 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
-              Published rooms, queued sessions, and live standings across every game night format.
+            <p
+              class="mt-4 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base"
+            >
+              Published rooms, queued sessions, and live standings across every
+              game night format.
             </p>
             <p class="mt-4 text-xs font-black uppercase text-[#2f7d32]">
               One queue for every game your group wants to play
             </p>
           </div>
 
-          <dl class="grid grid-cols-3 border-y border-gray-300 py-4 lg:min-w-[430px]">
+          <dl
+            class="grid grid-cols-3 border-y border-gray-300 py-4 lg:min-w-[430px]"
+          >
             <div class="border-r border-gray-300 px-4">
-              <dt class="text-[10px] font-bold uppercase text-gray-500">Sessions</dt>
-              <dd class="mt-2 text-xl font-black">3 <span class="text-xs text-gray-400">/ live</span></dd>
+              <dt class="text-[10px] font-bold uppercase text-gray-500">
+                Sessions
+              </dt>
+              <dd class="mt-2 text-xl font-black">
+                3 <span class="text-xs text-gray-400">/ live</span>
+              </dd>
             </div>
             <div class="border-r border-gray-300 px-4">
-              <dt class="text-[10px] font-bold uppercase text-gray-500">Rooms</dt>
+              <dt class="text-[10px] font-bold uppercase text-gray-500">
+                Rooms
+              </dt>
               <dd class="mt-2 text-xl font-black">12</dd>
             </div>
             <div class="px-4">
-              <dt class="text-[10px] font-bold uppercase text-gray-500">Complete</dt>
-              <dd class="mt-2 text-xl font-black">{{ matchCenter.completedFixtureCount() }}</dd>
+              <dt class="text-[10px] font-bold uppercase text-gray-500">
+                Complete
+              </dt>
+              <dd class="mt-2 text-xl font-black">
+                {{ matchCenter.completedFixtureCount() }}
+              </dd>
             </div>
           </dl>
         </div>
@@ -73,7 +97,11 @@
           }
         </div>
 
-        <div class="mt-8" [id]="'round-panel-' + selectedRoundNumber()" role="tabpanel">
+        <div
+          class="mt-8"
+          [id]="'round-panel-' + selectedRoundNumber()"
+          role="tabpanel"
+        >
           @if (selectedRound(); as round) {
             <game-scheduler-fixture-list [round]="round" />
           }
@@ -87,7 +115,9 @@
   </main>
 
   <footer class="border-t border-gray-200 bg-white">
-    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+    <div
+      class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8"
+    >
       <p class="font-bold text-gray-800">GAME SCHEDULER / SCHEDULE BOARD</p>
       <p>Rooms, results, and rankings without the group-chat scramble.</p>
     </div>

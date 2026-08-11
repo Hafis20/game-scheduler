@@ -4,7 +4,7 @@
   "sourceRoot": "libs/game-scheduler/auth/ui/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["domain:auth","type:ui"],
+  "tags": ["domain:auth", "type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

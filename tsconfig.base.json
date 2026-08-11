@@ -55,9 +55,16 @@
       "@game-scheduler/dashboard": [
         "./libs/game-scheduler/dashboard/feature/src/index.ts"
       ],
-      "@game-scheduler/dashboard-service": [
+      "@game-scheduler/dashboard/data-access": [
         "./libs/game-scheduler/dashboard/data-access/src/index.ts"
-      ]
+      ],
+      "@game-scheduler/rooms/data-access": [
+        "./libs/game-scheduler/rooms/data-access/src/index.ts"
+      ],
+      "@game-scheduler/rooms/feature": [
+        "./libs/game-scheduler/rooms/feature/src/index.ts"
+      ],
+      "@game-scheduler/ui": ["./libs/game-scheduler/rooms/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

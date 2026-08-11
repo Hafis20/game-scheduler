@@ -58,24 +58,43 @@
       >
         Schedule
       </a>
-      @if (user(); as currentUser) {
-        @if (avatarUrl(currentUser); as avatar) {
-          <button type="button" (click)="signOutClicked.emit()">
-            <img
-              class="size-10 rounded-full border border-gray-200 object-cover"
-              [src]="avatar"
-              [alt]="currentUser.email || 'User avatar'"
-            />
-          </button>
-        } @else {
-          <button
-            type="button"
-            class="inline-flex size-10 items-center justify-center rounded-full bg-gray-950 text-sm font-bold text-white"
-            (click)="signOutClicked.emit()"
-          >
-            {{ currentUser.email?.charAt(0)?.toUpperCase() || 'U' }}
-          </button>
-        }
+      @if (authLoading()) {
+        <div class="h-10 w-24 animate-pulse rounded bg-gray-200"></div>
+      } @else if (user(); as currentUser) {
+        <div class="relative flex items-center">
+          @if (avatarUrl(currentUser); as avatar) {
+            <button type="button" (click)="toggleProfileMenu()">
+              <img
+                class="size-10 rounded-full cursor-pointer border border-gray-200 object-cover"
+                [src]="avatar"
+                [alt]="currentUser.email || 'User avatar'"
+              />
+            </button>
+          } @else {
+            <button
+              type="button"
+              class="inline-flex cursor-pointer size-10 items-center justify-center rounded-full bg-gray-950 text-sm font-bold text-white"
+              (click)="toggleProfileMenu()"
+            >
+              {{ currentUser.email?.charAt(0)?.toUpperCase() || 'U' }}
+            </button>
+          }
+
+          @if (showProfileMenu()) {
+            <div
+              class="absolute w-52 h-32 top-12 bg-[#f7faf6] right-0 rounded-xl shadow-sm p-3 flex gap-3 flex-col items-center"
+            >
+              <game-scheduler-button
+                (click)="navigateToDashboard()"
+                [label]="'Go to Dashboard'"
+              />
+              <game-scheduler-button
+                (click)="signOutClicked.emit()"
+                [label]="'Logout'"
+              />
+            </div>
+          }
+        </div>
       } @else {
         <button
           type="button"
