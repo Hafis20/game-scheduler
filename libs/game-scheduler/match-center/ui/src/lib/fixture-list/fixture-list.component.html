@@ -10,7 +10,7 @@
       </h2>
     </div>
     <p class="text-xs font-bold uppercase text-gray-500">
-      {{ round().fixtures.length }} rooms
+      {{ round().fixtures.length }} tournaments
     </p>
   </div>
 
@@ -19,7 +19,7 @@
       class="hidden min-h-11 grid-cols-[5rem_minmax(0,1fr)_5rem_minmax(0,1fr)_6.5rem] items-center gap-x-4 bg-gray-900 px-5 text-[10px] font-extrabold uppercase text-gray-400 md:grid"
       aria-hidden="true"
     >
-      <span>Room</span>
+      <span>Tournament</span>
       <span>Host</span>
       <span class="text-center">Result</span>
       <span>Guest</span>
@@ -34,7 +34,7 @@
           <p
             class="col-start-1 row-start-1 text-[10px] font-extrabold uppercase text-gray-400 md:col-auto md:row-auto"
           >
-            Room {{ match.id.toString().padStart(2, '0') }}
+            Tournament {{ match.id.toString().padStart(2, '0') }}
           </p>
 
           <div

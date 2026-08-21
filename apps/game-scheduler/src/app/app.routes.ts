@@ -26,11 +26,11 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'rooms',
+    path: 'tournament',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('@game-scheduler/rooms/feature').then(
-        (module) => module.RoomOverview
+      import('@game-scheduler/tournament/feature').then(
+        (module) => module.TournamentOverview
       ),
   },
   {

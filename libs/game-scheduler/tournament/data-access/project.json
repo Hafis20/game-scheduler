@@ -1,16 +1,16 @@
 {
-  "name": "rooms--directory",
+  "name": "game-scheduler-tournament-data-access",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/game-scheduler/rooms/feature/src",
+  "sourceRoot": "libs/game-scheduler/tournament/data-access/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:game-scheduler", "domain:rooms", "type:feature"],
+  "tags": ["scope:game-scheduler", "domain:tournament", "type:data-access"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "coverage/libs/game-scheduler/rooms/feature"
+        "reportsDirectory": "coverage/libs/game-scheduler/tournament/data-access"
       }
     },
     "lint": {

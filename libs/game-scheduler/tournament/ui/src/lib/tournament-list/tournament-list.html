@@ -1,0 +1,7 @@
+<div class="flex justify-end">
+  <game-scheduler-button [label]="'Create Tournament'"></game-scheduler-button>
+
+  @if(isTournamentCreating()){
+  <lib-create-tournament></lib-create-tournament>
+  }
+</div>

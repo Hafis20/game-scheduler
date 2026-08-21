@@ -7,12 +7,14 @@ export type ButtonVariant =
   | 'black'
   | 'warning';
 
+export type ButtonType = 'submit' | 'button';
 @Component({
   selector: 'game-scheduler-button',
   templateUrl: './button.html',
 })
 export class ButtonComponent {
   readonly label = input.required<string>();
+  readonly buttonType = input<ButtonType>('button');
 
   readonly variant = input<ButtonVariant>('primary');
 

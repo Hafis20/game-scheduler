@@ -1,1 +1,11 @@
-<p>input works!</p>
+<div class="flex flex-col gap-2">
+  @if (label()) {
+  <label [for]="id()" class="text-sm font-medium"> {{ label() }} </label>
+  }
+  <input
+    type="text"
+    [value]="value()"
+    (input)="value.set($event.target.value)"
+    class="w-full rounded-md border border-slate-400 bg-transparent px-3 py-2 outline-none transition focus:border-slate-500"
+  />
+</div>

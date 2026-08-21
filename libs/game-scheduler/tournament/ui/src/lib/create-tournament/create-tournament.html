@@ -1,0 +1,20 @@
+<div>
+  <form (submit)="onSubmit($event)">
+    <game-scheduler-modal [open]="true" [size]="'md'">
+      <div modal-header>Create Tournament</div>
+      <div modal-content>
+        <game-scheduler-input
+          [id]="'tournament-name'"
+          [label]="'Enter your name of the Tournament'"
+          [formField]="createTournamentForm.tournamentName"
+        />
+      </div>
+      <div modal-footer>
+        <game-scheduler-button
+          [buttonType]="'submit'"
+          [label]="'Next'"
+        ></game-scheduler-button>
+      </div>
+    </game-scheduler-modal>
+  </form>
+</div>

@@ -7,14 +7,14 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 export default defineConfig(() => ({
   root: __dirname,
   cacheDir:
-    '../../../../node_modules/.vite/libs/game-scheduler/rooms/data-access',
+    '../../../../node_modules/.vite/libs/game-scheduler/tournament/feature',
   plugins: [angular(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
   // Uncomment this if you are using workers.
   // worker: {
   //   plugins: () => [ nxViteTsPaths() ],
   // },
   test: {
-    name: 'rooms',
+    name: 'game-scheduler-tournament-feature',
     watch: false,
     globals: true,
     environment: 'jsdom',
@@ -23,7 +23,7 @@ export default defineConfig(() => ({
     reporters: ['default'],
     coverage: {
       reportsDirectory:
-        '../../../../coverage/libs/game-scheduler/rooms/data-access',
+        '../../../../coverage/libs/game-scheduler/tournament/feature',
       provider: 'v8' as const,
     },
   },

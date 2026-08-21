@@ -1,16 +1,16 @@
 {
-  "name": "ui",
+  "name": "game-scheduler-tournament-feature",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/game-scheduler/rooms/ui/src",
+  "sourceRoot": "libs/game-scheduler/tournament/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:game-scheduler", "domain:rooms", "type:ui"],
+  "tags": ["scope:game-scheduler", "domain:tournament", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "coverage/libs/game-scheduler/rooms/ui"
+        "reportsDirectory": "coverage/libs/game-scheduler/tournament/feature"
       }
     },
     "lint": {
