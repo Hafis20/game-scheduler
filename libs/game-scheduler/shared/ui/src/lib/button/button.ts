@@ -15,6 +15,7 @@ export type ButtonType = 'submit' | 'button';
 export class ButtonComponent {
   readonly label = input.required<string>();
   readonly buttonType = input<ButtonType>('button');
+  readonly disabled = input(false);
 
   readonly variant = input<ButtonVariant>('primary');
 

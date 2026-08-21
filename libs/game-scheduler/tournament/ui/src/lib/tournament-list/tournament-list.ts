@@ -1,6 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { ButtonComponent } from '@game-scheduler/shared/ui';
-import { CreateTournament } from '../create-tournament/create-tournament';
+import {
+  CreateTournament,
+  CreateTournamentPayload,
+} from '../create-tournament/create-tournament';
 
 @Component({
   selector: 'lib-tournament-list',
@@ -8,9 +11,18 @@ import { CreateTournament } from '../create-tournament/create-tournament';
   imports: [ButtonComponent, CreateTournament],
 })
 export class TournamentList {
-  readonly isTournamentCreating = signal(true);
+  readonly isTournamentCreating = signal(false);
 
-  protected toggleTournamentCreationPopup() {
-    this.isTournamentCreating.set(!this.isTournamentCreating());
+  protected openTournamentCreationPopup(): void {
+    this.isTournamentCreating.set(true);
+  }
+
+  protected closeTournamentCreationPopup(): void {
+    this.isTournamentCreating.set(false);
+  }
+
+  protected onTournamentCreated(tournament: CreateTournamentPayload): void {
+    console.log('Tournament created', tournament);
+    this.closeTournamentCreationPopup();
   }
 }

@@ -1,11 +1,18 @@
 <div class="flex flex-col gap-2">
   @if (label()) {
-  <label [for]="id()" class="text-sm font-medium"> {{ label() }} </label>
+  <label [for]="id()" class="text-sm font-medium">{{ label() }}</label>
   }
+
   <input
-    type="text"
+    [id]="id()"
+    [type]="type()"
     [value]="value()"
-    (input)="value.set($event.target.value)"
-    class="w-full rounded-md border border-slate-400 bg-transparent px-3 py-2 outline-none transition focus:border-slate-500"
+    [placeholder]="placeholder()"
+    [attr.min]="min() ?? null"
+    [attr.max]="max() ?? null"
+    [disabled]="disabled()"
+    [required]="required()"
+    (input)="onValueChange($event)"
+    class="w-full rounded-md border border-slate-400 bg-transparent px-3 py-2 outline-none transition focus:border-slate-500 disabled:cursor-not-allowed disabled:opacity-50"
   />
 </div>

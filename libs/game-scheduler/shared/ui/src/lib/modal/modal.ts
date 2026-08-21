@@ -11,6 +11,7 @@ export class ModalComponent {
   readonly open = input.required<boolean>();
   readonly size = input<ModalSize>('md');
   readonly closeOnBackdropClick = input(true);
+  readonly allowContentOverflow = input(false);
   readonly closed = output<void>();
 
   protected readonly sizeClasses = computed(() => {

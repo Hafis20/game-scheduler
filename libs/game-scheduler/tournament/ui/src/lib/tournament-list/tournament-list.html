@@ -1,7 +1,13 @@
 <div class="flex justify-end">
-  <game-scheduler-button [label]="'Create Tournament'"></game-scheduler-button>
+  <game-scheduler-button
+    [label]="'Create Tournament'"
+    (click)="openTournamentCreationPopup()"
+  ></game-scheduler-button>
 
-  @if(isTournamentCreating()){
-  <lib-create-tournament></lib-create-tournament>
+  @if (isTournamentCreating()) {
+  <lib-create-tournament
+    (closed)="closeTournamentCreationPopup()"
+    (created)="onTournamentCreated($event)"
+  />
   }
 </div>

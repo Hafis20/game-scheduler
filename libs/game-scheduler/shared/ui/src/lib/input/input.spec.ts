@@ -11,8 +11,10 @@ describe('Input', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(Input);
+    fixture.componentRef.setInput('id', 'test-input');
+    fixture.componentRef.setInput('value', '');
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {

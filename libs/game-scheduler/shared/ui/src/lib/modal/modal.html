@@ -10,8 +10,10 @@
 
   <!-- Modal -->
   <div
-    class="relative z-10 max-h-[90vh] overflow-auto rounded-xl bg-white shadow-xl px-4"
+    class="relative z-10 max-h-[90vh] rounded-xl bg-white px-4 shadow-xl"
     [class]="sizeClasses()"
+    [class.overflow-visible]="allowContentOverflow()"
+    [class.overflow-auto]="!allowContentOverflow()"
     role="dialog"
     aria-modal="true"
   >
@@ -23,7 +25,11 @@
     </div>
 
     <!-- Content -->
-    <div class="flex-1 overflow-y-auto px-1 py-4">
+    <div
+      class="flex-1 px-1 py-4"
+      [class.overflow-visible]="allowContentOverflow()"
+      [class.overflow-y-auto]="!allowContentOverflow()"
+    >
       <ng-content select="[modal-content]" />
     </div>
 
