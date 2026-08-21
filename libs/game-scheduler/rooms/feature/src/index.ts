@@ -1,1 +1,1 @@
-export * from './lib/room-list/room-list';
+export * from './lib/room-overview/room-overview';

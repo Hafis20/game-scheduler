@@ -2,7 +2,9 @@
   "name": "@game-scheduler/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "app": "nx serve game-scheduler"
+  },
   "private": true,
   "packageManager": "pnpm@11.18.0",
   "devDependencies": {

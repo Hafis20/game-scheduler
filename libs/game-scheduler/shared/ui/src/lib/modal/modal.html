@@ -1,0 +1,36 @@
+@if (open()) {
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+  <!-- Backdrop -->
+  <button
+    type="button"
+    class="absolute inset-0 bg-black/50"
+    aria-label="Close modal"
+    (click)="onBackdropClick()"
+  ></button>
+
+  <!-- Modal -->
+  <div
+    class="relative z-10 max-h-[90vh] overflow-auto rounded-xl bg-white shadow-xl px-4"
+    [class]="sizeClasses()"
+    role="dialog"
+    aria-modal="true"
+  >
+    <!-- Header -->
+    <div
+      class="shrink-0 border-b border-gray-200 px-0.5 font-semibold text-xl pt-4 pb-1.5"
+    >
+      <ng-content select="[modal-header]" />
+    </div>
+
+    <!-- Content -->
+    <div class="flex-1 overflow-y-auto px-1 py-4">
+      <ng-content select="[modal-content]" />
+    </div>
+
+    <!-- Footer -->
+    <div class="shrink-0 border-t border-gray-200 px-0.5 py-4 flex justify-end">
+      <ng-content select="[modal-footer]" />
+    </div>
+  </div>
+</div>
+}

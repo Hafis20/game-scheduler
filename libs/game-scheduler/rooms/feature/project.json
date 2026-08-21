@@ -4,7 +4,7 @@
   "sourceRoot": "libs/game-scheduler/rooms/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:game-scheduler", "domain:rooms", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/vitest:test",

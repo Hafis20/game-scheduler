@@ -64,7 +64,9 @@
       "@game-scheduler/rooms/feature": [
         "./libs/game-scheduler/rooms/feature/src/index.ts"
       ],
-      "@game-scheduler/ui": ["./libs/game-scheduler/rooms/ui/src/index.ts"]
+      "@game-scheduler/rooms/ui": [
+        "./libs/game-scheduler/rooms/ui/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

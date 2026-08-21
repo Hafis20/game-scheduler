@@ -30,7 +30,7 @@ export const appRoutes: Route[] = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('@game-scheduler/rooms/feature').then(
-        (module) => module.RoomsComponent
+        (module) => module.RoomOverview
       ),
   },
   {
