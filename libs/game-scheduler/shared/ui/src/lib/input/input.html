@@ -12,7 +12,10 @@
     [attr.max]="max() ?? null"
     [disabled]="disabled()"
     [required]="required()"
+    [attr.aria-invalid]="invalid()"
     (input)="onValueChange($event)"
-    class="w-full rounded-md border border-slate-400 bg-transparent px-3 py-2 outline-none transition focus:border-slate-500 disabled:cursor-not-allowed disabled:opacity-50"
+    (blur)="touch.emit()"
+    class="w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 outline-none transition focus:border-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
+    [class.border-red-500]="invalid()"
   />
 </div>

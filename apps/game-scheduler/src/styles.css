@@ -1,1 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap');
 @import 'tailwindcss';
+
+@theme {
+  --font-rubik: 'Rubik Spray Paint', system-ui;
+
+  --color-primary: #7cff4f;
+}

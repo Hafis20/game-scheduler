@@ -12,10 +12,13 @@
       [attr.aria-controls]="listboxId()"
       [attr.aria-expanded]="isOpen()"
       [attr.aria-required]="required()"
+      [attr.aria-invalid]="invalid()"
       [disabled]="disabled()"
       (click)="toggleDropdown()"
       (keydown)="onTriggerKeydown($event)"
-      class="flex w-full cursor-pointer items-center justify-between gap-3 rounded-md border border-slate-400 bg-white px-3 py-2 text-left text-sm outline-none transition focus:border-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
+      (blur)="touch.emit()"
+      class="flex w-full cursor-pointer items-center justify-between gap-3 rounded-md border border-slate-300 bg-white px-3 py-2.5 text-left text-sm outline-none transition focus:border-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
+      [class.border-red-500]="invalid()"
     >
       <span [class.text-gray-400]="!selectedOption()">
         {{ selectedOption()?.label ?? placeholder() }}

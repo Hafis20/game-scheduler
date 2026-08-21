@@ -16,9 +16,7 @@ create table public.tournaments (
 
   is_private boolean not null default false,
 
-  created_by uuid not null
-    references public.profiles(id)
-    on delete cascade,
+  created_by uuid not null,
 
   created_at timestamptz not null default now(),
 

@@ -1,13 +1,93 @@
-<div class="flex justify-end">
-  <game-scheduler-button
-    [label]="'Create Tournament'"
-    (click)="openTournamentCreationPopup()"
-  ></game-scheduler-button>
+<section>
+  <div
+    class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div>
+      <h1 class="text-2xl font-semibold text-gray-950">Tournaments</h1>
+      <p class="mt-1 text-sm text-gray-500">
+        Create and manage your competitions.
+      </p>
+    </div>
 
-  @if (isTournamentCreating()) {
-  <lib-create-tournament
-    (closed)="closeTournamentCreationPopup()"
-    (created)="onTournamentCreated($event)"
-  />
-  }
-</div>
+    <game-scheduler-button
+      label="Create tournament"
+      [disabled]="loading()"
+      (click)="createRequested.emit()"
+    />
+  </div>
+
+  <div class="mt-8">
+    @if (loading()) {
+    <div
+      class="rounded-lg border border-gray-200 px-4 py-10 text-center text-sm text-gray-500"
+    >
+      Loading tournaments...
+    </div>
+    } @else if (errorMessage()) {
+    <div
+      role="alert"
+      class="flex flex-col gap-4 rounded-lg border border-red-200 bg-red-50 px-4 py-5 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="text-sm font-medium text-red-700">{{ errorMessage() }}</p>
+      <game-scheduler-button
+        label="Try again"
+        variant="black"
+        (click)="retryRequested.emit()"
+      />
+    </div>
+    } @else if (tournaments().length === 0) {
+    <div
+      class="rounded-lg border border-dashed border-gray-300 px-4 py-12 text-center"
+    >
+      <p class="font-medium text-gray-900">No tournaments yet</p>
+      <p class="mt-1 text-sm text-gray-500">
+        Create your first tournament to get started.
+      </p>
+    </div>
+    } @else {
+    <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+      <table class="w-full min-w-[760px] border-collapse text-left">
+        <caption class="sr-only">
+          Your tournaments
+        </caption>
+        <thead class="border-b border-gray-200 bg-gray-50">
+          <tr
+            class="text-xs font-semibold uppercase tracking-wide text-gray-500"
+          >
+            <th scope="col" class="px-4 py-3">Tournament</th>
+            <th scope="col" class="px-4 py-3">Game</th>
+            <th scope="col" class="px-4 py-3">Format</th>
+            <th scope="col" class="px-4 py-3">Players</th>
+            <th scope="col" class="px-4 py-3">Start date</th>
+            <th scope="col" class="px-4 py-3">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          @for (tournament of tournaments(); track tournament.id) {
+          <tr class="text-sm text-gray-700">
+            <td class="px-4 py-4 font-semibold text-gray-950">
+              {{ tournament.name }}
+            </td>
+            <td class="px-4 py-4">{{ displayLabel(tournament.game) }}</td>
+            <td class="px-4 py-4">{{ displayLabel(tournament.format) }}</td>
+            <td class="px-4 py-4">{{ tournament.maxPlayerCount }}</td>
+            <td class="px-4 py-4">
+              {{ tournament.startDate ? (tournament.startDate | date :
+              'mediumDate') : 'Not set' }}
+            </td>
+            <td class="px-4 py-4">
+              <span
+                class="inline-flex rounded-full px-2.5 py-1 text-xs font-semibold"
+                [class]="statusClasses(tournament.status)"
+              >
+                {{ displayLabel(tournament.status) }}
+              </span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+</section>

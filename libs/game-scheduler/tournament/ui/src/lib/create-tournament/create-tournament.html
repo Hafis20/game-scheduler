@@ -3,33 +3,28 @@
     [open]="true"
     [size]="'lg'"
     [allowContentOverflow]="true"
+    [closeOnBackdropClick]="!submitting()"
     (closed)="closed.emit()"
   >
-    <div modal-header class="pb-2">
+    <div modal-header>
       <div class="flex items-center justify-between gap-4">
-        <div>
-          <p class="mt-1 text-xl font-black uppercase text-gray-950">
-            Build your next arena
-          </p>
-        </div>
-        <span
-          class="shrink-0 rounded-full border border-gray-300 bg-gray-50 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-gray-600"
-        >
-          Quest {{ currentStep() }} / 4
+        <h2 class="text-xl font-semibold text-gray-950">Create tournament</h2>
+        <span class="shrink-0 text-sm font-medium text-gray-500">
+          Step {{ currentStep() }} of 4
         </span>
       </div>
     </div>
 
     <div modal-content>
       <div
-        class="mb-7 grid grid-cols-4 gap-2"
+        class="mb-8 grid grid-cols-4 gap-2"
         aria-label="Tournament setup progress"
       >
         @for (step of steps; track step.number) {
         <div>
           <div [class]="progressClasses(step.number)"></div>
           <p
-            class="mt-2 hidden text-[10px] font-black uppercase tracking-wider sm:block"
+            class="mt-2 hidden text-xs font-medium sm:block"
             [class.text-gray-950]="step.number === currentStep()"
             [class.text-gray-400]="step.number !== currentStep()"
           >
@@ -40,139 +35,150 @@
       </div>
 
       @switch (currentStep()) { @case (1) {
-      <section class="min-h-64 rounded-xl border-gray-200">
-        <div class="">
+      <section class="min-h-56">
+        <h3 class="text-lg font-semibold text-gray-950">Tournament name</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Choose a clear name players will recognize.
+        </p>
+
+        <div class="mt-6">
           <game-scheduler-input
             [id]="'tournament-name'"
-            label="Name your tournament"
+            label="Name"
             placeholder="Friday Night Champions"
-            [required]="true"
-            [value]="createTournamentModel().tournamentName"
-            (valueChange)="updateField('tournamentName', $event)"
+            [formField]="createTournamentForm.tournamentName"
           />
+          @if (createTournamentForm.tournamentName().touched() &&
+          createTournamentForm.tournamentName().invalid()) {
+          <p class="mt-2 text-xs font-medium text-red-600">
+            Enter at least 3 characters.
+          </p>
+          }
         </div>
       </section>
       } @case (2) {
-      <section class="min-h-64 rounded-xl">
-        <div class="mt-7">
+      <section class="min-h-56">
+        <h3 class="text-lg font-semibold text-gray-950">Select a game</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Pick the game this tournament is for.
+        </p>
+
+        <div class="mt-6">
           <game-scheduler-dropdown
             [id]="'tournament-game'"
-            label="Pick the game"
-            placeholder="Choose your battleground"
-            [required]="true"
+            label="Game"
+            placeholder="Choose a game"
             [options]="gameOptions"
-            [value]="createTournamentModel().game"
-            (valueChange)="updateField('game', $event)"
+            [formField]="createTournamentForm.game"
           />
         </div>
       </section>
       } @case (3) {
-      <section class="min-h-64 rounded-xl">
-        <div class="mt-7 grid gap-5 sm:grid-cols-2">
+      <section class="min-h-56">
+        <h3 class="text-lg font-semibold text-gray-950">Tournament setup</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Set the player limit and competition format.
+        </p>
+
+        <div class="mt-6 grid gap-5 sm:grid-cols-2">
           <game-scheduler-input
             [id]="'max-player-count'"
             label="Maximum players"
             type="number"
             placeholder="Example: 16"
-            min="2"
-            max="256"
-            [required]="true"
-            [value]="createTournamentModel().maxPlayerCount"
-            (valueChange)="updateField('maxPlayerCount', $event)"
+            [formField]="createTournamentForm.maxPlayerCount"
           />
 
           <game-scheduler-dropdown
             [id]="'tournament-format'"
-            label="Tournament format"
-            placeholder="Choose the battle format"
-            [required]="true"
+            label="Format"
+            placeholder="Choose a format"
             [options]="formatOptions"
-            [value]="createTournamentModel().format"
-            (valueChange)="updateField('format', $event)"
+            [formField]="createTournamentForm.format"
           />
         </div>
 
-        <p class="mt-4 text-xs font-bold text-gray-500">
-          Round Robin gives every challenger a chance to face the field.
+        @if (createTournamentForm.maxPlayerCount().touched() &&
+        createTournamentForm.maxPlayerCount().invalid()) {
+        <p class="mt-2 text-xs font-medium text-red-600">
+          Enter a whole number between 2 and 256.
         </p>
+        }
       </section>
       } @case (4) {
-      <section class="min-h-64 rounded-xl">
+      <section class="min-h-56">
+        <h3 class="text-lg font-semibold text-gray-950">Start date</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Choose when the tournament begins.
+        </p>
+
         <div class="mt-6 grid gap-5 sm:grid-cols-[1fr_1.15fr]">
           <game-scheduler-input
             [id]="'tournament-start-date'"
             label="Start date"
             type="date"
-            [min]="minimumStartDate"
-            [required]="true"
-            [value]="createTournamentModel().startDate"
-            (valueChange)="updateField('startDate', $event)"
+            [formField]="createTournamentForm.startDate"
           />
 
-          <div
-            class="rounded-lg border border-gray-800 bg-gray-950 p-4 text-white"
-          >
-            <p
-              class="text-[10px] font-black uppercase tracking-[0.2em] text-[#7cff4f]"
-            >
-              Loadout confirmed
-            </p>
-            <p class="mt-2 truncate text-lg font-black uppercase">
+          <div class="rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <p class="text-xs font-medium text-gray-500">Summary</p>
+            <p class="mt-2 truncate font-semibold text-gray-950">
               {{ createTournamentModel().tournamentName }}
             </p>
             <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-xs">
               <div>
                 <dt class="text-gray-500">Game</dt>
-                <dd class="mt-1 font-bold">{{ selectedGameLabel() }}</dd>
+                <dd class="mt-1 font-medium text-gray-900">
+                  {{ selectedGameLabel() }}
+                </dd>
               </div>
               <div>
                 <dt class="text-gray-500">Players</dt>
-                <dd class="mt-1 font-bold">
+                <dd class="mt-1 font-medium text-gray-900">
                   {{ createTournamentModel().maxPlayerCount }} max
                 </dd>
               </div>
               <div class="col-span-2">
                 <dt class="text-gray-500">Format</dt>
-                <dd class="mt-1 font-bold">{{ selectedFormatLabel() }}</dd>
+                <dd class="mt-1 font-medium text-gray-900">
+                  {{ selectedFormatLabel() }}
+                </dd>
               </div>
             </dl>
           </div>
         </div>
       </section>
-      } }
+      } } @if (errorMessage()) {
+      <p
+        role="alert"
+        class="mt-4 rounded-md bg-red-50 px-3 py-2 text-sm font-medium text-red-700"
+      >
+        {{ errorMessage() }}
+      </p>
+      }
     </div>
 
-    <div
-      modal-footer
-      class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
-    >
-      <p class="text-xs font-bold text-gray-500">
-        @if (canContinue()) {
-        <span class="text-[#2f7d32]">Objective complete · gate unlocked</span>
-        } @else { Complete this objective to unlock the next quest }
-      </p>
-
-      <div class="flex justify-end gap-2">
-        @if (currentStep() > 1) {
-        <game-scheduler-button
-          label="Back"
-          variant="black"
-          (click)="previousStep()"
-        />
-        } @if (currentStep() < 4) {
-        <game-scheduler-button
-          label="Continue"
-          [disabled]="!canContinue()"
-          (click)="nextStep()"
-        />
-        } @else {
-        <game-scheduler-button
-          label="Launch Tournament"
-          buttonType="submit"
-          [disabled]="!canContinue()"
-        />
-        }
-      </div>
+    <div modal-footer class="flex w-full items-center justify-end gap-2">
+      @if (currentStep() > 1) {
+      <game-scheduler-button
+        label="Back"
+        variant="black"
+        [disabled]="submitting()"
+        (click)="previousStep()"
+      />
+      } @if (currentStep() < 4) {
+      <game-scheduler-button
+        label="Continue"
+        [disabled]="submitting() || !canContinue()"
+        (click)="nextStep()"
+      />
+      } @else {
+      <game-scheduler-button
+        [label]="submitting() ? 'Creating...' : 'Create tournament'"
+        buttonType="submit"
+        [disabled]="submitting() || !canContinue()"
+      />
+      }
     </div>
   </game-scheduler-modal>
 </form>

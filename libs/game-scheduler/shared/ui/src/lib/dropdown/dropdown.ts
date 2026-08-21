@@ -4,9 +4,11 @@ import {
   ElementRef,
   inject,
   input,
+  model,
   output,
   signal,
 } from '@angular/core';
+import { FormValueControl } from '@angular/forms/signals';
 
 export interface DropdownOption {
   label: string;
@@ -21,7 +23,7 @@ export interface DropdownOption {
     '(document:click)': 'onDocumentClick($event)',
   },
 })
-export class Dropdown {
+export class Dropdown implements FormValueControl<string> {
   private readonly hostElement = inject(ElementRef<HTMLElement>);
 
   readonly id = input.required<string>();
@@ -30,8 +32,9 @@ export class Dropdown {
   readonly options = input<readonly DropdownOption[]>([]);
   readonly disabled = input(false);
   readonly required = input(false);
-  readonly value = input('');
-  readonly valueChange = output<string>();
+  readonly invalid = input(false);
+  readonly value = model.required<string>();
+  readonly touch = output<void>();
 
   protected readonly isOpen = signal(false);
   protected readonly selectedOption = computed(() =>
@@ -50,7 +53,7 @@ export class Dropdown {
       return;
     }
 
-    this.valueChange.emit(option.value);
+    this.value.set(option.value);
     this.isOpen.set(false);
   }
 

@@ -1,4 +1,11 @@
-import { Component, computed, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
+import {
+  form,
+  FormField,
+  minLength,
+  required,
+  validate,
+} from '@angular/forms/signals';
 import {
   ModalComponent,
   ButtonComponent,
@@ -27,12 +34,14 @@ type TournamentStep = 1 | 2 | 3 | 4;
 
 @Component({
   selector: 'lib-create-tournament',
-  imports: [ModalComponent, ButtonComponent, Dropdown, Input],
+  imports: [ModalComponent, ButtonComponent, Dropdown, Input, FormField],
   templateUrl: './create-tournament.html',
 })
 export class CreateTournament {
   readonly closed = output<void>();
   readonly created = output<CreateTournamentPayload>();
+  readonly submitting = input(false);
+  readonly errorMessage = input<string | null>(null);
 
   protected readonly currentStep = signal<TournamentStep>(1);
   protected readonly steps = [
@@ -67,6 +76,49 @@ export class CreateTournament {
     startDate: '',
   });
 
+  protected readonly createTournamentForm = form(
+    this.createTournamentModel,
+    (tournament) => {
+      required(tournament.tournamentName);
+      minLength(tournament.tournamentName, 3);
+      validate(tournament.tournamentName, ({ value }) =>
+        value().trim().length >= 3
+          ? undefined
+          : {
+              kind: 'tournamentName',
+              message: 'Enter at least 3 characters.',
+            }
+      );
+      required(tournament.game);
+      required(tournament.maxPlayerCount);
+      validate(tournament.maxPlayerCount, ({ value }) => {
+        if (!value()) {
+          return undefined;
+        }
+
+        const playerCount = Number(value());
+        return Number.isInteger(playerCount) &&
+          playerCount >= 2 &&
+          playerCount <= 256
+          ? undefined
+          : {
+              kind: 'maxPlayerCount',
+              message: 'Enter a whole number between 2 and 256.',
+            };
+      });
+      required(tournament.format);
+      required(tournament.startDate);
+      validate(tournament.startDate, ({ value }) =>
+        !value() || value() >= this.minimumStartDate
+          ? undefined
+          : {
+              kind: 'startDate',
+              message: 'Choose today or a future date.',
+            }
+      );
+    }
+  );
+
   protected readonly selectedGameLabel = computed(
     () =>
       this.gameOptions.find(
@@ -82,32 +134,23 @@ export class CreateTournament {
   );
 
   protected readonly canContinue = computed(() => {
-    const tournament = this.createTournamentModel();
-
     switch (this.currentStep()) {
       case 1:
-        return tournament.tournamentName.trim().length >= 3;
+        return this.createTournamentForm.tournamentName().valid();
       case 2:
-        return tournament.game.length > 0;
-      case 3: {
-        const playerCount = Number(tournament.maxPlayerCount);
+        return this.createTournamentForm.game().valid();
+      case 3:
         return (
-          Number.isInteger(playerCount) &&
-          playerCount >= 2 &&
-          playerCount <= 256 &&
-          tournament.format.length > 0
+          this.createTournamentForm.maxPlayerCount().valid() &&
+          this.createTournamentForm.format().valid()
         );
-      }
       case 4:
-        return (
-          tournament.startDate.length > 0 &&
-          tournament.startDate >= this.minimumStartDate
-        );
+        return this.createTournamentForm.startDate().valid();
     }
   });
 
   protected nextStep(): void {
-    if (!this.canContinue() || this.currentStep() === 4) {
+    if (this.submitting() || !this.canContinue() || this.currentStep() === 4) {
       return;
     }
 
@@ -115,33 +158,23 @@ export class CreateTournament {
   }
 
   protected previousStep(): void {
-    if (this.currentStep() === 1) {
+    if (this.submitting() || this.currentStep() === 1) {
       return;
     }
 
     this.currentStep.update((step) => (step - 1) as TournamentStep);
   }
 
-  protected updateField(
-    field: keyof CreateTournamentFormModel,
-    value: string
-  ): void {
-    this.createTournamentModel.update((tournament) => ({
-      ...tournament,
-      [field]: value,
-    }));
-  }
-
   protected progressClasses(step: TournamentStep): string {
     return step <= this.currentStep()
-      ? 'h-1.5 rounded-full bg-[#7cff4f] transition-colors'
+      ? 'h-1.5 rounded-full bg-green-500 transition-colors'
       : 'h-1.5 rounded-full bg-gray-200 transition-colors';
   }
 
   protected onSubmit(event: Event): void {
     event.preventDefault();
 
-    if (this.currentStep() !== 4 || !this.canContinue()) {
+    if (this.submitting() || this.currentStep() !== 4 || !this.canContinue()) {
       return;
     }
 

@@ -19,7 +19,7 @@ describe('CreateTournament', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should complete all four quests and emit the tournament', async () => {
+  it('should complete all four steps and emit the tournament', async () => {
     const created = vi.fn();
     component.created.subscribe(created);
     fixture.detectChanges();
@@ -95,7 +95,7 @@ describe('CreateTournament', () => {
     await settleView(
       setValue('input#tournament-start-date', '2099-01-01', 'input')
     );
-    await clickButton('Launch Tournament');
+    await clickButton('Create tournament');
 
     expect(created).toHaveBeenCalledWith({
       tournamentName: 'Friday Night Champions',

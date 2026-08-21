@@ -26,12 +26,6 @@ describe('Dropdown', () => {
   });
 
   it('should update its value when an option is selected', () => {
-    const valueChange = vi.fn();
-    component.valueChange.subscribe((value) => {
-      valueChange(value);
-      fixture.componentRef.setInput('value', value);
-    });
-
     const trigger = fixture.nativeElement.querySelector(
       '[role="combobox"]'
     ) as HTMLButtonElement;
@@ -44,7 +38,7 @@ describe('Dropdown', () => {
     chessOption?.click();
     fixture.detectChanges();
 
-    expect(valueChange).toHaveBeenCalledWith('chess');
+    expect(component.value()).toBe('chess');
     expect(trigger.textContent).toContain('Chess');
     expect(fixture.nativeElement.querySelector('[role="listbox"]')).toBeNull();
   });

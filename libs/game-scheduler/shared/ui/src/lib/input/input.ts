@@ -1,4 +1,5 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
+import { FormValueControl } from '@angular/forms/signals';
 
 export type InputType = 'text' | 'number' | 'date';
 
@@ -7,7 +8,7 @@ export type InputType = 'text' | 'number' | 'date';
   imports: [],
   templateUrl: './input.html',
 })
-export class Input {
+export class Input implements FormValueControl<string> {
   readonly id = input.required<string>();
   readonly label = input<string>();
   readonly type = input<InputType>('text');
@@ -16,10 +17,11 @@ export class Input {
   readonly max = input<string>();
   readonly disabled = input(false);
   readonly required = input(false);
-  readonly value = input('');
-  readonly valueChange = output<string>();
+  readonly invalid = input(false);
+  readonly value = model.required<string>();
+  readonly touch = output<void>();
 
   protected onValueChange(event: Event): void {
-    this.valueChange.emit((event.target as HTMLInputElement).value);
+    this.value.set((event.target as HTMLInputElement).value);
   }
 }
