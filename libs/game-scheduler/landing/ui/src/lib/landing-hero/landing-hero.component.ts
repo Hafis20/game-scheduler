@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ButtonComponent } from '@game-scheduler/shared/ui';
 
 @Component({
   selector: 'game-scheduler-landing-hero',
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './landing-hero.component.html',
   host: { class: 'block' },
   changeDetection: ChangeDetectionStrategy.OnPush,

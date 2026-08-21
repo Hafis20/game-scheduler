@@ -1,8 +1,53 @@
-<button
-  class="cursor-pointer rounded-lg px-5 py-2.5 border border-green-400 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-45"
-  [class]="variantClasses()"
-  [type]="buttonType()"
-  [disabled]="disabled()"
->
-  {{ label() }}
-</button>
+<ng-template #content>
+  <span>{{ label() }}</span>
+
+  @switch (icon()) {
+    @case ('arrow-right') {
+      <svg lucideArrowRight class="size-4" aria-hidden="true"></svg>
+    }
+    @case ('arrow-down') {
+      <svg lucideArrowDown class="size-4" aria-hidden="true"></svg>
+    }
+    @case ('calendar') {
+      <svg lucideCalendarDays class="size-4" aria-hidden="true"></svg>
+    }
+    @case ('plus') {
+      <svg lucidePlus class="size-4" aria-hidden="true"></svg>
+    }
+    @case ('trophy') {
+      <svg lucideTrophy class="size-4" aria-hidden="true"></svg>
+    }
+  }
+</ng-template>
+
+@if (routerLink()) {
+  <a
+    [routerLink]="routerLink()"
+    [attr.aria-disabled]="disabled()"
+    [attr.tabindex]="disabled() ? -1 : null"
+    [class]="buttonClasses()"
+    [class.pointer-events-none]="disabled()"
+    [class.opacity-45]="disabled()"
+  >
+    <ng-container [ngTemplateOutlet]="content" />
+  </a>
+} @else if (href()) {
+  <a
+    [attr.href]="disabled() ? null : href()"
+    [attr.aria-disabled]="disabled()"
+    [attr.tabindex]="disabled() ? -1 : null"
+    [class]="buttonClasses()"
+    [class.pointer-events-none]="disabled()"
+    [class.opacity-45]="disabled()"
+  >
+    <ng-container [ngTemplateOutlet]="content" />
+  </a>
+} @else {
+  <button
+    [class]="buttonClasses()"
+    [type]="buttonType()"
+    [disabled]="disabled()"
+  >
+    <ng-container [ngTemplateOutlet]="content" />
+  </button>
+}

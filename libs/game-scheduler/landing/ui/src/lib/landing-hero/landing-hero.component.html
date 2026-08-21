@@ -11,12 +11,12 @@
     <div
       class="inline-flex items-center gap-3 rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-bold uppercase text-gray-700"
     >
-      <span class="size-2 rounded-full bg-[#56b947]"></span>
+      <span class="size-2 rounded-full bg-primary"></span>
       Game Scheduler
       <span class="text-gray-400">Live tournaments</span>
     </div>
 
-    <p class="mt-8 text-xs font-black uppercase text-gray-500">
+    <p class="mt-8 text-xs font-semibold uppercase text-gray-500">
       The match night control system
     </p>
 
@@ -32,7 +32,7 @@
     </p>
 
     <p
-      class="mt-4 flex max-w-2xl items-center justify-center gap-2 text-center text-xs font-black uppercase text-gray-600 sm:text-sm"
+      class="mt-4 flex max-w-2xl items-center justify-center gap-2 text-center text-xs font-semibold uppercase text-gray-600 sm:text-sm"
     >
       <span
         class="size-2 shrink-0 rounded-full bg-[#56b947]"
@@ -42,20 +42,25 @@
     </p>
 
     <div
-      class="mt-8 flex w-full max-w-md flex-col justify-center gap-3 sm:flex-row"
+      class="mt-8 flex w-full max-w-lg flex-col justify-center gap-3 sm:flex-row"
     >
-      <a
-        class="inline-flex min-h-12 flex-1 items-center justify-center rounded-2xl bg-[#7cff4f] px-6 text-sm font-bold text-gray-950 transition hover:bg-[#69e93c]"
+      <game-scheduler-button
+        class="flex-1"
+        label="Launch Tournament"
         href="#join"
-      >
-        Create a match
-      </a>
-      <a
-        class="inline-flex min-h-12 flex-1 items-center justify-center rounded-2xl border border-gray-300 bg-white px-6 text-sm font-bold text-gray-950 transition hover:border-gray-500 hover:bg-gray-50"
+        icon="trophy"
+        size="large"
+        [fullWidth]="true"
+      />
+      <game-scheduler-button
+        class="flex-1"
+        label="Explore Tournaments"
         href="#arena"
-      >
-        Explore tournaments
-      </a>
+        icon="arrow-right"
+        size="large"
+        variant="black"
+        [fullWidth]="true"
+      />
     </div>
   </div>
 </section>

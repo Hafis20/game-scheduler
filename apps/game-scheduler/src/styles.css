@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Rubik+Spray+Paint&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import 'tailwindcss';
 
 @theme {
   --font-rubik: 'Rubik Spray Paint', system-ui;
-
+  --font-rubik-dirty: 'Rubik Dirt', system-ui;
   --color-primary: #7cff4f;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-style: normal;
 }

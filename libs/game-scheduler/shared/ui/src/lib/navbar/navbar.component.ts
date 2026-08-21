@@ -8,9 +8,11 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '@supabase/supabase-js';
+import { ButtonComponent } from '../button/button';
+
 @Component({
   selector: 'game-scheduler-navbar',
-  imports: [RouterLink],
+  imports: [ButtonComponent, RouterLink],
   templateUrl: './navbar.component.html',
   host: { class: 'block' },
 })
