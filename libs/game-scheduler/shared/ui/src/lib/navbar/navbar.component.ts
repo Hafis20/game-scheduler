@@ -8,15 +8,13 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { User } from '@supabase/supabase-js';
-import { ButtonComponent } from '../button/button';
 @Component({
   selector: 'game-scheduler-navbar',
-  imports: [RouterLink, ButtonComponent],
+  imports: [RouterLink],
   templateUrl: './navbar.component.html',
   host: { class: 'block' },
 })
 export class NavbarComponent {
-  readonly brand = input('Game Scheduler');
   readonly router = inject(Router);
   readonly isScrolled = signal(false);
 
@@ -32,18 +30,31 @@ export class NavbarComponent {
     this.isScrolled.set(window.scrollY > 0);
   }
 
-  protected toggleProfileMenu() {
+  protected toggleProfileMenu(): void {
     this.showProfileMenu.set(!this.showProfileMenu());
   }
 
-  protected navigateToDashboard() {
-    this.toggleProfileMenu();
-    this.router.navigate(['/dashboard']);
+  protected navigateToDashboard(): void {
+    this.showProfileMenu.set(false);
+    void this.router.navigate(['/dashboard']);
+  }
+
+  protected signOut(): void {
+    this.showProfileMenu.set(false);
+    this.signOutClicked.emit();
   }
 
   protected avatarUrl(user: User): string | null {
     const metadata = user.user_metadata;
 
     return metadata['avatar_url'] ?? metadata['picture'] ?? null;
+  }
+
+  protected displayName(user: User): string {
+    const name = user.user_metadata['full_name'] ?? user.user_metadata['name'];
+
+    return typeof name === 'string' && name.trim()
+      ? name
+      : (user.email ?? 'Player');
   }
 }

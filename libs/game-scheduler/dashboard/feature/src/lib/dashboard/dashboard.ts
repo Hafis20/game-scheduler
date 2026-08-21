@@ -1,16 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
-import { DashboardService } from '@game-scheduler/dashboard/data-access';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'lib-dashboard',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
 })
-export class DashboardComponent {
-  private readonly dashboardService = inject(DashboardService);
-  protected gameRoom = signal([]);
-
-  ngOnInit(): void {
-    this.dashboardService.getGameRooms().then();
-  }
-}
+export class DashboardComponent {}

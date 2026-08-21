@@ -14,7 +14,6 @@ import { User } from '@supabase/supabase-js';
   selector: 'game-scheduler-root',
   template: `
     <game-scheduler-navbar
-      brand="GAME SCHEDULER"
       [user]="user()"
       (loginClicked)="login()"
       (signOutClicked)="signOut()"

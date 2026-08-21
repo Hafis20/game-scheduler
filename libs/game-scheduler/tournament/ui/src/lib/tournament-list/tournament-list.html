@@ -1,14 +1,5 @@
-<section>
-  <div
-    class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-  >
-    <div>
-      <h1 class="text-2xl font-semibold text-gray-950">Tournaments</h1>
-      <p class="mt-1 text-sm text-gray-500">
-        Create and manage your competitions.
-      </p>
-    </div>
-
+<div>
+  <div class="flex justify-end">
     <game-scheduler-button
       label="Create tournament"
       [disabled]="loading()"
@@ -16,7 +7,7 @@
     />
   </div>
 
-  <div class="mt-8">
+  <div class="mt-6">
     @if (loading()) {
     <div
       class="rounded-lg border border-gray-200 px-4 py-10 text-center text-sm text-gray-500"
@@ -90,4 +81,4 @@
     </div>
     }
   </div>
-</section>
+</div>
