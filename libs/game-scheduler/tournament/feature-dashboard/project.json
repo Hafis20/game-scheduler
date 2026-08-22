@@ -1,7 +1,7 @@
 {
-  "name": "game-scheduler-tournament-feature",
+  "name": "game-scheduler-tournament-feature-dashboard",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/game-scheduler/tournament/feature/src",
+  "sourceRoot": "libs/game-scheduler/tournament/feature-dashboard/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": ["scope:game-scheduler", "domain:tournament", "type:feature"],
@@ -10,7 +10,7 @@
       "executor": "@nx/vitest:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "coverage/libs/game-scheduler/tournament/feature"
+        "reportsDirectory": "coverage/libs/game-scheduler/tournament/feature-dashboard"
       }
     },
     "lint": {

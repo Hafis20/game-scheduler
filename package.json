@@ -60,6 +60,7 @@
     "@ngrx/effects": "^21.1.1",
     "@ngrx/store": "^21.1.1",
     "@ngrx/store-devtools": "^21.1.1",
+    "@supabase/server": "^1.4.1",
     "@supabase/supabase-js": "^2.112.2",
     "@tailwindcss/postcss": "^4.3.3",
     "postcss": "^8.5.26",

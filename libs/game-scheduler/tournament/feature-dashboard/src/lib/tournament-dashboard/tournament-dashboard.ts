@@ -10,11 +10,11 @@ import {
 } from '@game-scheduler/tournament/ui';
 
 @Component({
-  selector: 'lib-tournament-overview',
+  selector: 'lib-tournament-dashboard',
   imports: [TournamentList, CreateTournament],
-  templateUrl: './tournament-overview.html',
+  templateUrl: './tournament-dashboard.html',
 })
-export class TournamentOverview implements OnInit {
+export class TournamentDashboard implements OnInit {
   private readonly tournamentService = inject(TournamentService);
 
   protected readonly tournaments = signal<readonly Tournament[]>([]);

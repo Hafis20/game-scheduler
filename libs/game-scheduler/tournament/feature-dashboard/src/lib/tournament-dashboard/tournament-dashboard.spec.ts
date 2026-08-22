@@ -4,9 +4,9 @@ import {
   TournamentService,
 } from '@game-scheduler/tournament/data-access';
 import { CreateTournamentPayload } from '@game-scheduler/tournament/ui';
-import { TournamentOverview } from './tournament-overview';
+import { TournamentDashboard } from './tournament-dashboard';
 
-describe('TournamentOverview', () => {
+describe('TournamentDashboard', () => {
   const createTournament = vi.fn();
   const getTournaments = vi.fn();
 
@@ -25,12 +25,12 @@ describe('TournamentOverview', () => {
     updatedAt: '2026-08-21T10:00:00+00:00',
   };
 
-  let component: TournamentOverview;
-  let fixture: ComponentFixture<TournamentOverview>;
+  let component: TournamentDashboard;
+  let fixture: ComponentFixture<TournamentDashboard>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TournamentOverview],
+      imports: [TournamentDashboard],
       providers: [
         {
           provide: TournamentService,
@@ -43,7 +43,7 @@ describe('TournamentOverview', () => {
     getTournaments.mockReset();
     createTournament.mockResolvedValue(tournament);
     getTournaments.mockResolvedValue([]);
-    fixture = TestBed.createComponent(TournamentOverview);
+    fixture = TestBed.createComponent(TournamentDashboard);
     component = fixture.componentInstance;
     fixture.detectChanges();
     await fixture.whenStable();

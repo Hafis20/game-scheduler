@@ -61,8 +61,11 @@
       "@game-scheduler/tournament/data-access": [
         "./libs/game-scheduler/tournament/data-access/src/index.ts"
       ],
-      "@game-scheduler/tournament/feature": [
-        "./libs/game-scheduler/tournament/feature/src/index.ts"
+      "@game-scheduler/tournament/feature-dashboard": [
+        "./libs/game-scheduler/tournament/feature-dashboard/src/index.ts"
+      ],
+      "@game-scheduler/tournament/feature-join": [
+        "./libs/game-scheduler/tournament/feature-join/src/index.ts"
       ],
       "@game-scheduler/tournament/ui": [
         "./libs/game-scheduler/tournament/ui/src/index.ts"

@@ -38,6 +38,9 @@ importers:
       '@ngrx/store-devtools':
         specifier: ^21.1.1
         version: 21.1.1(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(@ngrx/store@21.1.1(@angular/core@22.0.8(@angular/compiler@22.0.8)(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
+      '@supabase/server':
+        specifier: ^1.4.1
+        version: 1.4.1(@supabase/supabase-js@2.112.2)(hono@4.13.1)
       '@supabase/supabase-js':
         specifier: ^2.112.2
         version: 2.112.2
@@ -2784,6 +2787,25 @@ packages:
   '@supabase/realtime-js@2.112.2':
     resolution: {integrity: sha512-cd9/CEUJ6Go13FxtfiuC5rYELJtuQzVzTXlGG+XjSppjDS+anq+xo++WQe7ZRUNTuHOCeyKRwmx9Hw/OQJ04ig==}
     engines: {node: '>=22.0.0'}
+
+  '@supabase/server@1.4.1':
+    resolution: {integrity: sha512-Fyzpi+Srfn+flN3PwueObhSmwhXFaTkrnk3iD+ttNBEz6gD0VmaOqTe7tCxTSodm1zncWSxsyPQxATL7V+SfIw==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@nestjs/common': ^10.0.0 || ^11.0.0
+      '@supabase/supabase-js': ^2.0.0
+      elysia: ^1.4.0
+      h3: ^2.0.0
+      hono: ^4.0.0
+    peerDependenciesMeta:
+      '@nestjs/common':
+        optional: true
+      elysia:
+        optional: true
+      h3:
+        optional: true
+      hono:
+        optional: true
 
   '@supabase/storage-js@2.112.2':
     resolution: {integrity: sha512-6jyBq/J1iXOHNpbjCZS7gFcDk49iM1MCJUVkDl71gLd/+XnLDzpUBs8icGebtwiHpl4kVszxIRDYAosbF4Rsig==}
@@ -9478,6 +9500,13 @@ snapshots:
     dependencies:
       '@supabase/phoenix': 0.4.5
       tslib: 2.8.1
+
+  '@supabase/server@1.4.1(@supabase/supabase-js@2.112.2)(hono@4.13.1)':
+    dependencies:
+      '@supabase/supabase-js': 2.112.2
+      jose: 6.2.8
+    optionalDependencies:
+      hono: 4.13.1
 
   '@supabase/storage-js@2.112.2':
     dependencies:
