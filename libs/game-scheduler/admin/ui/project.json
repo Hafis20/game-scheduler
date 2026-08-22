@@ -1,0 +1,13 @@
+{
+  "name": "game-scheduler-admin-ui",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game-scheduler/admin/ui/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:game-scheduler", "domain:admin", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

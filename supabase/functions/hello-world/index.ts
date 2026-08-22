@@ -1,7 +1,7 @@
 import { withSupabase } from '@supabase/server';
 
 export default {
-  fetch: withSupabase({ auth: ['publishable', 'secret'] }, async (req, ctx) => {
+  fetch: withSupabase({ auth: 'none' }, async (req, ctx) => {
     // const { name } = await req.json();
 
     return Response.json({

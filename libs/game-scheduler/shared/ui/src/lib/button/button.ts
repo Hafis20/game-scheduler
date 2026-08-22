@@ -53,8 +53,7 @@ export class ButtonComponent {
 
   protected readonly buttonClasses = computed(() => {
     const variants: Record<ButtonVariant, string> = {
-      primary:
-        'border-green-400 bg-[#7cff4f] text-black hover:bg-[#6bea3e]',
+      primary: 'border-green-400 bg-[#7cff4f] text-black hover:bg-[#6bea3e]',
 
       secondary:
         'border-white bg-transparent text-white hover:bg-white hover:text-black',
@@ -63,8 +62,7 @@ export class ButtonComponent {
 
       black: 'border-black bg-black text-white hover:bg-black/80',
 
-      warning:
-        'border-yellow-400 bg-yellow-400 text-black hover:bg-yellow-500',
+      warning: 'border-yellow-400 bg-yellow-400 text-black hover:bg-yellow-500',
 
       ghost:
         'border-transparent bg-transparent text-gray-600 hover:bg-gray-100 hover:text-black',

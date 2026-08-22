@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "strict": false,
     "paths": {
+      "@game-scheduler/admin/data-access": [
+        "./libs/game-scheduler/admin/data-access/src/index.ts"
+      ],
+      "@game-scheduler/admin/feature-shell": [
+        "./libs/game-scheduler/admin/feature-shell/src/index.ts"
+      ],
+      "@game-scheduler/admin/feature-users": [
+        "./libs/game-scheduler/admin/feature-users/src/index.ts"
+      ],
+      "@game-scheduler/admin/ui": [
+        "./libs/game-scheduler/admin/ui/src/index.ts"
+      ],
       "@game-scheduler/landing/feature": [
         "./libs/game-scheduler/landing/feature/src/index.ts"
       ],
@@ -60,6 +72,9 @@
       ],
       "@game-scheduler/tournament/data-access": [
         "./libs/game-scheduler/tournament/data-access/src/index.ts"
+      ],
+      "@game-scheduler/tournament/feature-admin": [
+        "./libs/game-scheduler/tournament/feature-admin/src/index.ts"
       ],
       "@game-scheduler/tournament/feature-dashboard": [
         "./libs/game-scheduler/tournament/feature-dashboard/src/index.ts"

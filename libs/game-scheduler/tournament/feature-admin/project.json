@@ -1,0 +1,18 @@
+{
+  "name": "game-scheduler-tournament-feature-admin",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game-scheduler/tournament/feature-admin/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:game-scheduler", "domain:tournament", "type:feature"],
+  "targets": {
+    "test": {
+      "executor": "@nx/vitest:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "coverage/libs/game-scheduler/tournament/feature-admin"
+      }
+    },
+    "lint": { "executor": "@nx/eslint:lint" }
+  }
+}

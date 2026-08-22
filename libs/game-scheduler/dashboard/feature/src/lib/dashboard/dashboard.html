@@ -20,20 +20,12 @@
           class="inline-flex size-12 shrink-0 items-center justify-center rounded-xl bg-green-50 text-green-700"
           aria-hidden="true"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            class="size-6"
-          >
-            <path d="M8 4h8v3a4 4 0 0 1-8 0V4Z" />
-            <path d="M9 15h6" />
-            <path d="M12 11v4" />
-            <path d="M8 20h8" />
-            <path d="M6 5H3v2a4 4 0 0 0 5 4" />
-            <path d="M18 5h3v2a4 4 0 0 1-5 4" />
-          </svg>
+          @switch (nav.icon) { @case ('log-in') {
+          <svg lucideLogIn class="size-4" aria-hidden="true"></svg>
+          } @case ('trophy') {
+          <svg lucideTrophy class="size-4" aria-hidden="true"></svg>
+
+          } }
         </span>
 
         <span class="min-w-0 flex-1">
