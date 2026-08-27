@@ -7,6 +7,33 @@
     </p>
   </header>
 
+  @if (inviteLink()) {
+  <section
+    class="mt-8 rounded-lg border border-green-200 bg-green-50 p-4"
+    aria-labelledby="invite-link-heading"
+  >
+    <h2 id="invite-link-heading" class="font-semibold text-green-950">
+      Tournament created
+    </h2>
+    <p class="mt-1 text-sm text-green-800">Share this link with players.</p>
+    <div class="mt-3 flex flex-col gap-2 sm:flex-row">
+      <input
+        class="min-w-0 flex-1 rounded-lg border border-green-300 bg-white px-3 py-2 text-sm text-gray-900"
+        aria-label="Tournament invite link"
+        [value]="inviteLink()"
+        readonly
+      />
+      <button
+        type="button"
+        class="rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white"
+        (click)="copyInviteLink()"
+      >
+        {{ inviteLinkCopied() ? 'Copied' : 'Copy link' }}
+      </button>
+    </div>
+  </section>
+  }
+
   <section class="mt-8" aria-labelledby="tournament-list-heading">
     <h2 id="tournament-list-heading" class="sr-only">Tournament list</h2>
 
@@ -16,6 +43,7 @@
       [errorMessage]="loadTournamentsError()"
       (createRequested)="openTournamentCreationPopup()"
       (retryRequested)="loadTournaments()"
+      (detailsRequested)="viewTournamentDetails($event)"
     />
   </section>
 

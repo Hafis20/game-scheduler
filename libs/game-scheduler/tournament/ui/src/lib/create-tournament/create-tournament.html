@@ -82,11 +82,11 @@
 
         <div class="mt-6 grid gap-5 sm:grid-cols-2">
           <game-scheduler-input
-            [id]="'max-player-count'"
-            label="Maximum players"
+            [id]="'max-team-count'"
+            label="Maximum teams"
             type="number"
             placeholder="Example: 16"
-            [formField]="createTournamentForm.maxPlayerCount"
+            [formField]="createTournamentForm.maxTeamCount"
           />
 
           <game-scheduler-dropdown
@@ -98,8 +98,8 @@
           />
         </div>
 
-        @if (createTournamentForm.maxPlayerCount().touched() &&
-        createTournamentForm.maxPlayerCount().invalid()) {
+        @if (createTournamentForm.maxTeamCount().touched() &&
+        createTournamentForm.maxTeamCount().invalid()) {
         <p class="mt-2 text-xs font-medium text-red-600">
           Enter a whole number between 2 and 256.
         </p>
@@ -133,9 +133,9 @@
                 </dd>
               </div>
               <div>
-                <dt class="text-gray-500">Players</dt>
+                <dt class="text-gray-500">Teams</dt>
                 <dd class="mt-1 font-medium text-gray-900">
-                  {{ createTournamentModel().maxPlayerCount }} max
+                  {{ createTournamentModel().maxTeamCount }} max
                 </dd>
               </div>
               <div class="col-span-2">

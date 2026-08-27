@@ -17,7 +17,7 @@ import {
 interface CreateTournamentFormModel {
   tournamentName: string;
   game: string;
-  maxPlayerCount: string;
+  maxTeamCount: string;
   format: string;
   startDate: string;
 }
@@ -25,7 +25,7 @@ interface CreateTournamentFormModel {
 export interface CreateTournamentPayload {
   tournamentName: string;
   game: string;
-  maxPlayerCount: number;
+  maxTeamCount: number;
   format: string;
   startDate: string;
 }
@@ -71,7 +71,7 @@ export class CreateTournament {
   protected readonly createTournamentModel = signal<CreateTournamentFormModel>({
     tournamentName: '',
     game: '',
-    maxPlayerCount: '',
+    maxTeamCount: '',
     format: '',
     startDate: '',
   });
@@ -90,19 +90,17 @@ export class CreateTournament {
             }
       );
       required(tournament.game);
-      required(tournament.maxPlayerCount);
-      validate(tournament.maxPlayerCount, ({ value }) => {
+      required(tournament.maxTeamCount);
+      validate(tournament.maxTeamCount, ({ value }) => {
         if (!value()) {
           return undefined;
         }
 
-        const playerCount = Number(value());
-        return Number.isInteger(playerCount) &&
-          playerCount >= 2 &&
-          playerCount <= 256
+        const teamCount = Number(value());
+        return Number.isInteger(teamCount) && teamCount >= 2 && teamCount <= 256
           ? undefined
           : {
-              kind: 'maxPlayerCount',
+              kind: 'maxTeamCount',
               message: 'Enter a whole number between 2 and 256.',
             };
       });
@@ -141,7 +139,7 @@ export class CreateTournament {
         return this.createTournamentForm.game().valid();
       case 3:
         return (
-          this.createTournamentForm.maxPlayerCount().valid() &&
+          this.createTournamentForm.maxTeamCount().valid() &&
           this.createTournamentForm.format().valid()
         );
       case 4:
@@ -181,7 +179,7 @@ export class CreateTournament {
     const tournament = this.createTournamentModel();
     this.created.emit({
       ...tournament,
-      maxPlayerCount: Number(tournament.maxPlayerCount),
+      maxTeamCount: Number(tournament.maxTeamCount),
     });
   }
 

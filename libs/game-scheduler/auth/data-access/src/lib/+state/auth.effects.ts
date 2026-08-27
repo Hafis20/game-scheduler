@@ -1,4 +1,5 @@
 import { inject, Service } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../auth';
 import * as AuthActions from './auth.actions';
@@ -8,6 +9,7 @@ import { catchError, from, map, of, switchMap, tap } from 'rxjs';
 export class AuthEffects {
   private readonly actions$ = inject(Actions);
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   readonly loadUser$ = createEffect(() =>
     this.actions$.pipe(
@@ -27,7 +29,7 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInWithGoogle),
-        tap(() => this.authService.signInWithGoogle())
+        tap(({ returnUrl }) => this.authService.signInWithGoogle(returnUrl))
       ),
     { dispatch: false }
   );
@@ -41,5 +43,14 @@ export class AuthEffects {
         )
       )
     )
+  );
+
+  readonly redirectAfterSignOut$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signOutSuccess),
+        tap(() => this.router.navigate(['/auth']))
+      ),
+    { dispatch: false }
   );
 }

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import {
   Tournament,
   TournamentService,
@@ -9,17 +10,19 @@ import { TournamentDashboard } from './tournament-dashboard';
 describe('TournamentDashboard', () => {
   const createTournament = vi.fn();
   const getTournaments = vi.fn();
+  const navigate = vi.fn();
 
   const tournament: Tournament = {
     id: 'tournament-1',
     name: 'Friday Night Champions',
     game: 'football',
-    maxPlayerCount: 16,
+    maxTeamCount: 16,
     format: 'round-robin',
     status: 'DRAFT',
     startDate: '2099-01-01T00:00:00+00:00',
     description: null,
     isPrivate: false,
+    inviteToken: 'invite-123',
     createdBy: 'user-1',
     createdAt: '2026-08-21T10:00:00+00:00',
     updatedAt: '2026-08-21T10:00:00+00:00',
@@ -36,12 +39,17 @@ describe('TournamentDashboard', () => {
           provide: TournamentService,
           useValue: { createTournament, getTournaments },
         },
+        { provide: Router, useValue: { navigate } },
       ],
     }).compileComponents();
 
     createTournament.mockReset();
     getTournaments.mockReset();
-    createTournament.mockResolvedValue(tournament);
+    navigate.mockReset();
+    createTournament.mockResolvedValue({
+      tournament,
+      invitePath: '/join/invite-123',
+    });
     getTournaments.mockResolvedValue([]);
     fixture = TestBed.createComponent(TournamentDashboard);
     component = fixture.componentInstance;
@@ -61,7 +69,7 @@ describe('TournamentDashboard', () => {
     const payload: CreateTournamentPayload = {
       tournamentName: 'Friday Night Champions',
       game: 'football',
-      maxPlayerCount: 16,
+      maxTeamCount: 16,
       format: 'round-robin',
       startDate: '2099-01-01',
     };
@@ -79,7 +87,7 @@ describe('TournamentDashboard', () => {
     expect(createTournament).toHaveBeenCalledWith({
       name: 'Friday Night Champions',
       game: 'football',
-      maxPlayerCount: 16,
+      maxTeamCount: 16,
       format: 'round-robin',
       startDate: '2099-01-01',
     });
@@ -93,6 +101,10 @@ describe('TournamentDashboard', () => {
     ) as () => readonly Tournament[];
     expect(isCreating()).toBe(false);
     expect(tournaments()).toEqual([tournament]);
+    const inviteLink = Reflect.get(component, 'inviteLink') as () =>
+      | string
+      | null;
+    expect(inviteLink()).toBe('http://localhost:3000/join/invite-123');
   });
 
   it('should keep the popup open when creation fails', async () => {
@@ -109,7 +121,7 @@ describe('TournamentDashboard', () => {
     await create.call(component, {
       tournamentName: 'Friday Night Champions',
       game: 'football',
-      maxPlayerCount: 16,
+      maxTeamCount: 16,
       format: 'round-robin',
       startDate: '2099-01-01',
     });
@@ -123,5 +135,16 @@ describe('TournamentDashboard', () => {
       | null;
     expect(isCreating()).toBe(true);
     expect(error()).toBe('Database unavailable');
+  });
+
+  it('should navigate to tournament details', () => {
+    const viewDetails = Reflect.get(
+      component,
+      'viewTournamentDetails'
+    ) as (id: string) => void;
+
+    viewDetails.call(component, 'tournament-1');
+
+    expect(navigate).toHaveBeenCalledWith(['/tournament', 'tournament-1']);
   });
 });

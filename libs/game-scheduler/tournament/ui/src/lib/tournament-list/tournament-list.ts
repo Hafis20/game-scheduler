@@ -1,15 +1,16 @@
 import { DatePipe } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { ButtonComponent } from '@game-scheduler/shared/ui';
 
 export interface TournamentListItem {
   readonly id: string;
   readonly name: string;
   readonly game: string;
-  readonly maxPlayerCount: number;
+  readonly maxTeamCount: number;
   readonly format: string;
   readonly status: string;
   readonly startDate: string | null;
+  readonly inviteToken: string;
 }
 
 @Component({
@@ -24,6 +25,19 @@ export class TournamentList {
 
   readonly createRequested = output<void>();
   readonly retryRequested = output<void>();
+  readonly detailsRequested = output<string>();
+
+  protected readonly copiedInviteToken = signal<string | null>(null);
+
+  protected async copyInviteLink(inviteToken: string): Promise<void> {
+    const inviteLink = new URL(
+      `/join/${inviteToken}`,
+      globalThis.location.origin
+    ).toString();
+
+    await globalThis.navigator.clipboard.writeText(inviteLink);
+    this.copiedInviteToken.set(inviteToken);
+  }
 
   protected displayLabel(value: string): string {
     return value

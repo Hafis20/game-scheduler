@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Tournament,
   TournamentService,
@@ -16,6 +17,7 @@ import {
 })
 export class TournamentDashboard implements OnInit {
   private readonly tournamentService = inject(TournamentService);
+  private readonly router = inject(Router);
 
   protected readonly tournaments = signal<readonly Tournament[]>([]);
   protected readonly isLoadingTournaments = signal(true);
@@ -23,6 +25,8 @@ export class TournamentDashboard implements OnInit {
   protected readonly isTournamentCreating = signal(false);
   protected readonly isTournamentSubmitting = signal(false);
   protected readonly createTournamentError = signal<string | null>(null);
+  protected readonly inviteLink = signal<string | null>(null);
+  protected readonly inviteLinkCopied = signal(false);
 
   ngOnInit(): void {
     void this.loadTournaments();
@@ -71,17 +75,21 @@ export class TournamentDashboard implements OnInit {
     this.createTournamentError.set(null);
 
     try {
-      const createdTournament = await this.tournamentService.createTournament({
+      const result = await this.tournamentService.createTournament({
         name: tournament.tournamentName,
         game: tournament.game,
-        maxPlayerCount: tournament.maxPlayerCount,
+        maxTeamCount: tournament.maxTeamCount,
         format: tournament.format,
         startDate: tournament.startDate,
       });
       this.tournaments.update((tournaments) => [
-        createdTournament,
+        result.tournament,
         ...tournaments,
       ]);
+      this.inviteLink.set(
+        new URL(result.invitePath, globalThis.location.origin).toString()
+      );
+      this.inviteLinkCopied.set(false);
       this.isTournamentCreating.set(false);
     } catch (error) {
       this.createTournamentError.set(
@@ -95,8 +103,22 @@ export class TournamentDashboard implements OnInit {
     }
   }
 
+  protected async copyInviteLink(): Promise<void> {
+    const inviteLink = this.inviteLink();
+
+    if (!inviteLink) {
+      return;
+    }
+
+    await globalThis.navigator.clipboard.writeText(inviteLink);
+    this.inviteLinkCopied.set(true);
+  }
+
+  protected viewTournamentDetails(id: string): void {
+    void this.router.navigate(['/tournament', id]);
+  }
+
   private getErrorMessage(error: unknown, fallback: string): string {
-    console.log(error);
     return error instanceof Error && error.message ? error.message : fallback;
   }
 }

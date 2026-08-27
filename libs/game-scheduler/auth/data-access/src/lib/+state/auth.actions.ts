@@ -10,6 +10,9 @@ export const loadUserFailure = createAction(
   '[Auth] Load User Failure',
   props<{ error: string }>()
 );
-export const signInWithGoogle = createAction('[Auth] Sign In With Google');
+export const signInWithGoogle = createAction(
+  '[Auth] Sign In With Google',
+  props<{ returnUrl: string }>()
+);
 export const signOut = createAction('[Auth] Sign Out');
 export const signOutSuccess = createAction('[Auth] Sign Out Success');

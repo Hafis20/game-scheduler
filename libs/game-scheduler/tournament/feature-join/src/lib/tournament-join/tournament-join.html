@@ -17,5 +17,29 @@
       [value]="token()"
       (valueChange)="token.set($event)"
     />
+
+    <div class="mt-2 flex justify-end">
+      <game-scheduler-button
+        [label]="joining() ? 'Joining...' : 'Join'"
+        [disabled]="joining() || !token().trim()"
+        (click)="joinTournament()"
+      />
+    </div>
+
+    @if (successMessage()) {
+    <p
+      role="status"
+      class="mt-4 rounded-lg border border-green-200 bg-green-50 p-3 text-sm font-medium text-green-700"
+    >
+      {{ successMessage() }}
+    </p>
+    } @else if (errorMessage()) {
+    <p
+      role="alert"
+      class="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700"
+    >
+      {{ errorMessage() }}
+    </p>
+    }
   </section>
 </main>

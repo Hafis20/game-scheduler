@@ -26,6 +26,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'tournament/:id',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('@game-scheduler/tournament/feature-admin').then(
+        (module) => module.TournamentAdminComponent
+      ),
+  },
+  {
     path: 'tournament',
     canActivate: [authGuard],
     loadComponent: () =>
@@ -35,6 +43,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'join',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('@game-scheduler/tournament/feature-join').then(
         (module) => module.TournamentJoinComponent
@@ -42,6 +51,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'join/:token',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('@game-scheduler/tournament/feature-join').then(
         (module) => module.TournamentJoinComponent

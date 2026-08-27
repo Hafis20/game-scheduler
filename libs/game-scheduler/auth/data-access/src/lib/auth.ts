@@ -16,13 +16,18 @@ export type AuthStateChangeCallback = (
 export class AuthService {
   private readonly supabaseService = inject(SupabaseService);
 
-  async signInWithGoogle() {
+  async signInWithGoogle(returnUrl = '/') {
+    const safeReturnUrl =
+      returnUrl.startsWith('/') && !returnUrl.startsWith('//')
+        ? returnUrl
+        : '/';
+
     const { data, error } = await this.supabaseService
       .getClient()
       .auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/`,
+          redirectTo: new URL(safeReturnUrl, window.location.origin).toString(),
         },
       });
 

@@ -88,7 +88,7 @@ describe('CreateTournament', () => {
     await selectDropdownOption('#tournament-game', 'Football');
     await clickButton('Continue');
 
-    await settleView(setValue('input#max-player-count', '16', 'input'));
+    await settleView(setValue('input#max-team-count', '16', 'input'));
     await selectDropdownOption('#tournament-format', 'Round Robin');
     await clickButton('Continue');
 
@@ -100,7 +100,7 @@ describe('CreateTournament', () => {
     expect(created).toHaveBeenCalledWith({
       tournamentName: 'Friday Night Champions',
       game: 'football',
-      maxPlayerCount: 16,
+      maxTeamCount: 16,
       format: 'round-robin',
       startDate: '2099-01-01',
     });
