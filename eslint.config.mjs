@@ -17,29 +17,21 @@ export default [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
-              sourceTag: 'scope:game-scheduler',
-              onlyDependOnLibsWithTags: [
-                'scope:game-scheduler',
-                'scope:shared',
-              ],
-            },
-            {
-              sourceTag: 'domain:landing',
-              onlyDependOnLibsWithTags: ['domain:landing', 'domain:shared'],
-            },
-            {
-              sourceTag: 'domain:match-center',
-              onlyDependOnLibsWithTags: [
-                'domain:match-center',
-                'domain:shared',
-              ],
-            },
-            {
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: [
+                'type:routing',
                 'type:feature',
                 'type:data-access',
                 'type:shared',
+                'type:ui',
+                'type:util',
+              ],
+            },
+            {
+              sourceTag: 'type:routing',
+              onlyDependOnLibsWithTags: [
+                'type:feature',
+                'type:data-access',
                 'type:ui',
                 'type:util',
               ],

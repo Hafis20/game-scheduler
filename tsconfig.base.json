@@ -84,6 +84,9 @@
       ],
       "@game-scheduler/tournament/ui": [
         "./libs/game-scheduler/tournament/ui/src/index.ts"
+      ],
+      "@game-scheduler/admin/routing": [
+        "./libs/game-scheduler/admin/routing/src/index.ts"
       ]
     }
   },

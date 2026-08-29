@@ -11,6 +11,11 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('@game-scheduler/admin/routing').then((m) => m.ADMIN_ROUTES),
+  },
+  {
     path: 'auth',
     loadComponent: () =>
       import('@game-scheduler/auth/feature').then(
